@@ -11,8 +11,8 @@ public interface IMoveable
     
 
     //Example for a movable interface
-    float MoveInput { get; set; }
-    void SetMoveInput(float moveValue);
+    //float MoveInput { get; set; }
+    //void SetMoveInput(float moveValue);
 
     //Example for a damageable interface
     //void Damage(int damageAmount);
