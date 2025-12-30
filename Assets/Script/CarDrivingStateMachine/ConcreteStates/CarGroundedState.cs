@@ -10,4 +10,36 @@ public class CarGroundedState : CarDrivingState
 
     //Overrides will be generated after regeneration and adding into the unity project
 
+    public override void EnterState()
+    {
+        base.EnterState();
+        
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+    }
+
+    public override void FrameUpdate()
+    {
+        base.FrameUpdate();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+        car.UpdateTireCalcs(car.FR_Tire);
+        car.UpdateTireCalcs(car.FL_Tire);
+        car.UpdateTireCalcs(car.BR_Tire);
+        car.UpdateTireCalcs(car.BL_Tire);
+    }
+
+    public override void AnimationTriggerEvent(Car.AnimationTriggerType triggerType)
+    {
+        base.AnimationTriggerEvent(triggerType);
+    }
+
+
+
 }
