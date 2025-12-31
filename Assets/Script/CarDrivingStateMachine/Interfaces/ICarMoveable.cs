@@ -25,12 +25,13 @@ public interface ICarMoveable
     void PerformSuspensionCalc(Transform Tire, RaycastHit TireHit);
     void PerformSteeringCalc(Transform Tire, RaycastHit TireHit);
     void PerformAccelerationCalc(Transform Tire, RaycastHit TireHit);
-
+    void PerformBreakCalc(Transform Tire, RaycastHit TireHit);
 
 
     void SetAccelInput(float accelVal);
     void SetBrakeInput(float brakeVal);
     void SetSteeringInput(float steeringVal);
+    
     
 
 }

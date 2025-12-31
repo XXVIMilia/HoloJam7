@@ -111,6 +111,11 @@ public class Car : MonoBehaviour, ICarMoveable
             {
                 PerformAccelerationCalc(Tire, hit);
             }
+
+            if(brakeInput > 0.0f)
+            {
+                PerformBreakCalc(Tire,hit);
+            }
         }
     }
 
@@ -173,6 +178,15 @@ public class Car : MonoBehaviour, ICarMoveable
         float carSpeed = Vector3.Dot(transform.forward, CarRB.linearVelocity);
         float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed)/topSpeed);
         float availableTorque = powerCurve.Evaluate(normalizedSpeed) * accelInput;
+        CarRB.AddForceAtPosition(accelDir * availableTorque, Tire.position);
+    }
+
+    public void PerformBreakCalc(Transform Tire, RaycastHit TireHit)
+    {
+        Vector3 accelDir = -1*Tire.right;
+        float carSpeed = Vector3.Dot(transform.forward, CarRB.linearVelocity);
+        //float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed)/topSpeed);
+        float availableTorque = brakeInput;
         CarRB.AddForceAtPosition(accelDir * availableTorque, Tire.position);
     }
 
