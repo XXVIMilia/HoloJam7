@@ -17,7 +17,6 @@ public class WaypointController : MonoBehaviour
     void Update()
     {
         CheckNearestWaypoint();
-        Debug.DrawLine(transform.position, _nearestPoint, Color.white, 0.0f);
     }
 
     void CheckNearestWaypoint()
