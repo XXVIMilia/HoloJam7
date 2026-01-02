@@ -13,7 +13,8 @@ public class CarGroundedState : CarDrivingState
     public override void EnterState()
     {
         base.EnterState();
-        
+        car.JumpForce = 2f;
+        Debug.Log("Entering Grounded State");
     }
 
     public override void ExitState()
@@ -33,6 +34,10 @@ public class CarGroundedState : CarDrivingState
         car.UpdateTireCalcs(car.FL_Tire);
         car.UpdateTireCalcs(car.BR_Tire);
         car.UpdateTireCalcs(car.BL_Tire);
+        if (!car.CheckAirborne())
+        {
+            carDrivingStateMachine.ChangeState(car.carAirborneState);
+        }
     }
 
     public override void AnimationTriggerEvent(Car.AnimationTriggerType triggerType)
