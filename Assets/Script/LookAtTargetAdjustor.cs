@@ -36,7 +36,7 @@ public class LookAtTargetAdjustor : MonoBehaviour
 
     void UpdateCameraValues()
     {
-        cam.CameraSide = (steeringAngle + 1f)/2f;
+        cam.CameraSide = (-steeringAngle + 1f)/2f;
         //transform.rotation = Quaternion.AngleAxis(16,-transform.forward) * Quaternion.AngleAxis(90 + 10*steeringAngle,transform.up);
 
     }
