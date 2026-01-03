@@ -3,9 +3,9 @@ using UnityEngine;
 public class WayPointer : MonoBehaviour
 {
     [SerializeField] private WaypointController _controller;
-    [SerializeField] private RectTransform _pointer;
     [SerializeField] private float angleAdjustment;
-    private Vector3 _dir;
+    [Tooltip("IDK Atleast 500")]
+    [SerializeField] private float speed = 500.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,16 +16,12 @@ public class WayPointer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _dir = (_controller.nearestPoint - _controller.transform.position).normalized;
-        _dir.y = 0;
+        Vector3 _dir = _controller.nearestPoint.transform.position - transform.position;
+        float singleStep = speed * Time.deltaTime;
 
+        Vector3 newDirection = Vector3.RotateTowards(transform.up, _dir, singleStep, 0.0f);
 
-        float angle = Mathf.Atan2(_dir.z, _dir.x) * Mathf.Rad2Deg;
-        if (angle < 0)
-        {
-            angle += 360;
-        }
-        _pointer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + angleAdjustment));
+        transform.rotation =  Quaternion.LookRotation(newDirection);
 
     }
 }
