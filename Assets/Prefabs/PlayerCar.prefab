@@ -149,15 +149,15 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   CarDriveTrain: 1
-  topSpeed: 5
+  topSpeed: 20
   powerCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5619049
-      inSlope: 1.6332258
-      outSlope: 1.6332258
+      value: 0.7599945
+      inSlope: 0.36983898
+      outSlope: 0.36983898
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -165,8 +165,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.15679252
       value: 0.8179825
-      inSlope: 1.0458543
-      outSlope: 1.0458543
+      inSlope: 0.41416097
+      outSlope: 0.41416097
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
