@@ -168,3 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a9f62d00617674fb4688d5382a00cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Knockable
+  _radius: 50
+  _power: 1000
+  _upwardsModifier: 300
+  _forceMode: 0
+  _rb: {fileID: 3858255377811459650}
