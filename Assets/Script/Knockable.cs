@@ -7,6 +7,8 @@ public class Knockable : MonoBehaviour
     public float _power = 10.0f;
     public float _upwardsModifier = 3.0f;
     public ForceMode _forceMode = ForceMode.Force;
+    [Tooltip ("How strong player speed increases imapact")]
+    public float _baseSpeedPower = 0.7f;
 
     [Header("References")]
     [SerializeField] private Rigidbody _rb;
@@ -32,7 +34,7 @@ public class Knockable : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent<Car>(out Car car))
             {
-                float percent = 0.7f + (car.carSpeed / car.topSpeed);
+                float percent = _baseSpeedPower + (car.carSpeed / car.topSpeed);
                 _rb.AddExplosionForce(Mathf.Pow(_power, percent), transform.position, _radius, Mathf.Pow(_upwardsModifier, percent), _forceMode);
             }
         }
