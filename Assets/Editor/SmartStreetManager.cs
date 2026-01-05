@@ -19,7 +19,8 @@ public class SmartStreetManager : EditorWindow
         SHORT,
         CORNER,
         T_INTERSECTION,
-        PLUS_INTERSECTION
+        PLUS_INTERSECTION,
+        RAMP
     }
 
     private void OnGUI()
@@ -81,6 +82,10 @@ public class SmartStreetManager : EditorWindow
         {
             CreateSmartStreet(SmartStreetType.PLUS_INTERSECTION);
         }
+        else if(GUILayout.Button("Create Ramp Smart Street"))
+        {
+            CreateSmartStreet(SmartStreetType.RAMP);
+        }
         
     }
 
@@ -133,6 +138,9 @@ public class SmartStreetManager : EditorWindow
                 break;
             case SmartStreetType.PLUS_INTERSECTION:
                 prefabAsset = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/SmartStreets/SmartPlusIntersection.prefab");
+                break;
+            case SmartStreetType.RAMP:
+                prefabAsset = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/SmartStreets/SmartRamp.prefab");
                 break;
         }
             

@@ -30,6 +30,28 @@ public class WaypointEditor
                 Gizmos.color = Color.blue * 0.5f;
             }
         }
+        else if(waypoint.waypointType == Waypoint.WaypointType.THREE_WAYPOINT)
+        {
+            if((gizmoType & GizmoType.Selected) != 0)
+            {
+                Gizmos.color = Color.orange;
+            }
+            else
+            {
+                Gizmos.color = Color.orange * 0.5f;
+            }
+        }
+        else if(waypoint.waypointType == Waypoint.WaypointType.TWO_WAYPOINT)
+        {
+            if((gizmoType & GizmoType.Selected) != 0)
+            {
+                Gizmos.color = Color.yellow;
+            }
+            else
+            {
+                Gizmos.color = Color.yellow * 0.5f;
+            }
+        }
         
 
         Gizmos.DrawSphere(waypoint.transform.position, -0.5f );
@@ -46,6 +68,17 @@ public class WaypointEditor
         if(waypoint.NextWaypointB != null)
         {
             Gizmos.DrawLine(waypoint.transform.position,waypoint.NextWaypointB.transform.position);
+        }
+
+        if (waypoint.GetComponent<Plus_Waypoint>() != null)
+        {
+            Gizmos.DrawLine(waypoint.transform.position,waypoint.GetComponent<Plus_Waypoint>().NextWaypointC.transform.position);
+            Gizmos.DrawLine(waypoint.transform.position,waypoint.GetComponent<Plus_Waypoint>().NextWaypointD.transform.position);
+        }
+
+        if (waypoint.GetComponent<T_Waypoint>() != null)
+        {
+            Gizmos.DrawLine(waypoint.transform.position,waypoint.GetComponent<T_Waypoint>().NextWaypointC.transform.position);
         }
     
     }

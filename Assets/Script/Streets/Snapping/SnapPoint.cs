@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using Unity.VisualScripting;
+using System.Text.RegularExpressions;
 
 [ExecuteInEditMode()]
 public class SnapPoint : MonoBehaviour
@@ -21,6 +22,18 @@ public class SnapPoint : MonoBehaviour
     public Waypoint waypoint2A_End;
     public Waypoint waypoint2B_End;
 
+    [Header("Way3 Set")]
+    public Waypoint waypoint3A_Start;
+    public Waypoint waypoint3B_Start;
+    public Waypoint waypoint3A_End;
+    public Waypoint waypoint3B_End;
+
+    [Header("Way4 Set")]
+    public Waypoint waypoint4A_Start;
+    public Waypoint waypoint4B_Start;
+    public Waypoint waypoint4A_End;
+    public Waypoint waypoint4B_End;
+
 
     public Waypoint[] GetSet(bool setName)
     {
@@ -34,6 +47,58 @@ public class SnapPoint : MonoBehaviour
             Waypoint[] setToUse = {waypoint2A_End,waypoint2B_End,waypoint1A_Start,waypoint1B_Start};
             return setToUse;
         }
+        
+    }
+
+    public Waypoint[] GetPlusSet(int index)
+    {
+        print("Using set: " + index);
+        if(index == 0)
+        {
+            Waypoint[] setToUse = {waypoint4B_End,waypoint4A_End,waypoint1B_Start,waypoint1A_Start};
+            return setToUse;
+        }
+        else if(index == 1){
+            Waypoint[] setToUse = {waypoint1B_End,waypoint1A_End,waypoint2B_Start,waypoint2A_Start};
+            return setToUse;
+        }
+        else if(index == 2){
+            Waypoint[] setToUse = {waypoint2B_End,waypoint2A_End,waypoint3B_Start,waypoint3A_Start};
+            return setToUse;
+        }
+        else if(index == 3){
+            Waypoint[] setToUse = {waypoint3B_End,waypoint3A_End,waypoint4B_Start,waypoint4A_Start};
+            return setToUse;
+        }
+        else
+        {
+            return null;
+        }
+
+        
+    }
+
+    public Waypoint[] GetTSet(int index)
+    {
+        print("Using set: " + index);
+        if(index == 0)
+        {
+            Waypoint[] setToUse = {waypoint3B_End,waypoint3A_End,waypoint1B_Start,waypoint1A_Start};
+            return setToUse;
+        }
+        else if(index == 1){
+            Waypoint[] setToUse = {waypoint1B_End,waypoint1A_End,waypoint2B_Start,waypoint2A_Start};
+            return setToUse;
+        }
+        else if(index == 2){
+            Waypoint[] setToUse = {waypoint2B_End,waypoint2A_End,waypoint3B_Start,waypoint3A_Start};
+            return setToUse;
+        }
+        else
+        {
+            return null;
+        }
+
         
     }
 

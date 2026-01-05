@@ -774,13 +774,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 768876194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9894e48cbf18c3dd1ab5b67981846371, type: 3}
+  m_Script: {fileID: 11500000, guid: 21be8990e44a5a8888e15c2f14897031, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Waypoint
+  m_EditorClassIdentifier: Assembly-CSharp::Plus_Waypoint
   NextWaypointA: {fileID: 0}
   NextWaypointB: {fileID: 0}
-  waypointType: 0
+  waypointType: 3
   waypointWidth: 1.5
+  NextWaypointC: {fileID: 1980858136}
+  NextWaypointD: {fileID: 1111927505}
 --- !u!1 &820361578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,13 +1205,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1111927503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9894e48cbf18c3dd1ab5b67981846371, type: 3}
+  m_Script: {fileID: 11500000, guid: 21be8990e44a5a8888e15c2f14897031, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Waypoint
+  m_EditorClassIdentifier: Assembly-CSharp::Plus_Waypoint
   NextWaypointA: {fileID: 0}
   NextWaypointB: {fileID: 0}
-  waypointType: 0
+  waypointType: 3
   waypointWidth: 1.5
+  NextWaypointC: {fileID: 1640589123}
+  NextWaypointD: {fileID: 768876196}
 --- !u!1 &1157030543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,13 +1550,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1640589121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9894e48cbf18c3dd1ab5b67981846371, type: 3}
+  m_Script: {fileID: 11500000, guid: 21be8990e44a5a8888e15c2f14897031, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Waypoint
+  m_EditorClassIdentifier: Assembly-CSharp::Plus_Waypoint
   NextWaypointA: {fileID: 0}
   NextWaypointB: {fileID: 0}
-  waypointType: 0
+  waypointType: 3
   waypointWidth: 1.5
+  NextWaypointC: {fileID: 768876196}
+  NextWaypointD: {fileID: 1980858136}
 --- !u!1 &1661564526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,13 +1860,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1980858134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9894e48cbf18c3dd1ab5b67981846371, type: 3}
+  m_Script: {fileID: 11500000, guid: 21be8990e44a5a8888e15c2f14897031, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Waypoint
+  m_EditorClassIdentifier: Assembly-CSharp::Plus_Waypoint
   NextWaypointA: {fileID: 0}
   NextWaypointB: {fileID: 0}
-  waypointType: 0
+  waypointType: 3
   waypointWidth: 1.5
+  NextWaypointC: {fileID: 1111927505}
+  NextWaypointD: {fileID: 1111927505}
 --- !u!1 &2055326927
 GameObject:
   m_ObjectHideFlags: 0

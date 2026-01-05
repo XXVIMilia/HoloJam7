@@ -16,14 +16,53 @@ public class StreetSnapper : MonoBehaviour
     public Waypoint[] QuerySet(string nameOfSet)
     {
         SphereCollider[] spheres = GetComponentsInChildren<SphereCollider>();
-        if(spheres[0].name == nameOfSet)
+        if(spheres.Length == 2)
         {
-            return GetComponent<SnapPoint>().GetSet(false);
+            if(spheres[0].name == nameOfSet)
+            {
+                return GetComponent<SnapPoint>().GetSet(false);
+            }
+            else
+            {
+                return GetComponent<SnapPoint>().GetSet(true);
+            }
         }
-        else
+        else if(spheres.Length == 4)
         {
-            return GetComponent<SnapPoint>().GetSet(true);
+            int index = 0;
+            foreach (SphereCollider sphere in spheres){
+                if(sphere.name == nameOfSet)
+                {
+                    return GetComponent<SnapPoint>().GetPlusSet(index);
+
+                }
+                else
+                {
+                    index++;
+                }
+                
+            }
         }
+        else if(spheres.Length == 3)
+        {
+            int index = 0;
+            foreach (SphereCollider sphere in spheres){
+                if(sphere.name == nameOfSet)
+                {
+                    return GetComponent<SnapPoint>().GetTSet(index);
+
+                }
+                else
+                {
+                    index++;
+                }
+                
+            }
+        }
+        
+
+        return null;
+        
     }
 
 
@@ -45,26 +84,79 @@ if (setName)
         if(SnapPointTarget != null && SnapPointSelf != null)
         {
             SphereCollider[] spheres = GetComponentsInChildren<SphereCollider>();
-            if(spheres[0].name == SnapPointSelf.name)
+            if(spheres.Length == 2)
             {
-                selfSet = GetComponent<SnapPoint>().GetSet(false);
+                if(spheres[0].name == SnapPointSelf.name)
+                {
+                    selfSet = GetComponent<SnapPoint>().GetSet(false);
+                }
+                else{
+                    selfSet = GetComponent<SnapPoint>().GetSet(true);
+                }
             }
-            else{
-                selfSet = GetComponent<SnapPoint>().GetSet(true);
+            else if(spheres.Length == 4)
+            {
+                int index = 0;
+                foreach (SphereCollider sphere in spheres){
+                    if(sphere.name == SnapPointSelf.name)
+                    {
+                        selfSet = GetComponent<SnapPoint>().GetPlusSet(index);
+
+                    }
+                    else
+                    {
+                        index++;
+                    }
+                
+                }
             }
+            else if(spheres.Length == 3)
+            {
+                int index = 0;
+                foreach (SphereCollider sphere in spheres){
+                    if(sphere.name == SnapPointSelf.name)
+                    {
+                        selfSet = GetComponent<SnapPoint>().GetTSet(index);
+
+                    }
+                    else
+                    {
+                        index++;
+                    }
+                
+                }
+            }
+            
 
             targetSet = SnapPointTarget.GetComponentInParent<StreetSnapper>().QuerySet(SnapPointTarget.name);
 
-            selfSet[0].NextWaypointA = targetSet[2];
-            selfSet[0].NextWaypointB = targetSet[3];
-            selfSet[1].NextWaypointA = targetSet[3];
-            selfSet[1].NextWaypointB = targetSet[3];
+            if(spheres.Length == 2)
+            {
+                selfSet[0].NextWaypointA = targetSet[2];
+                selfSet[0].NextWaypointB = targetSet[3];
+                selfSet[1].NextWaypointA = targetSet[3];
+                selfSet[1].NextWaypointB = targetSet[2];
 
 
-            targetSet[0].NextWaypointA = selfSet[2];
-            targetSet[0].NextWaypointB = selfSet[3];
-            targetSet[1].NextWaypointA = selfSet[2];
-            targetSet[1].NextWaypointB = selfSet[3];
+                targetSet[0].NextWaypointA = selfSet[2];
+                targetSet[0].NextWaypointB = selfSet[3];
+                targetSet[1].NextWaypointA = selfSet[2];
+                targetSet[1].NextWaypointB = selfSet[3];
+            }
+            else
+            {
+                selfSet[0].NextWaypointB = targetSet[0];
+                selfSet[0].NextWaypointA = targetSet[0];
+                selfSet[1].NextWaypointB = targetSet[1];
+                selfSet[1].NextWaypointA = targetSet[1];
+
+
+                targetSet[0].NextWaypointB = selfSet[2];
+                targetSet[0].NextWaypointA = selfSet[3];
+                targetSet[1].NextWaypointB = selfSet[2];
+                targetSet[1].NextWaypointA = selfSet[3];
+            }
+            
             
         }
     }

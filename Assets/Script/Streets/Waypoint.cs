@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -18,6 +19,49 @@ public class Waypoint : MonoBehaviour
 
     [UnityEngine.Range(0f,5f)]
     public float waypointWidth = 1.5f;
+
+    public virtual Waypoint AdvancedNextWaypoint(){return null;}
+    public virtual void IncreaseQueue(){}
+    public virtual bool AwaitQueue(){return false;}
+
+    public Waypoint GetNextWaypoint()
+    {
+        if(waypointType == WaypointType.PATHING || waypointType == WaypointType.START)
+        {
+            float swapChance = Random.Range(0f,1f);
+            if(swapChance > 0.25)
+            {
+                if(NextWaypointB.waypointType == WaypointType.TWO_WAYPOINT || NextWaypointB.waypointType == WaypointType.THREE_WAYPOINT)
+                {
+                    if (!AwaitQueue())
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        NextWaypointB.IncreaseQueue();
+                        return NextWaypointB;
+                    }
+                    
+                }
+                else
+                {
+                    return NextWaypointB;
+                }
+                
+            }
+            else
+            {
+                return NextWaypointA;
+            }
+        }
+        else
+        {
+            return AdvancedNextWaypoint();
+            
+            
+        }
+    }
 
     public Vector3 GetRoughPosition()
     {
