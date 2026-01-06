@@ -13,14 +13,13 @@ public interface ICarMoveable
     float brakeInput {get; set;}
     float steeringInput {get; set;}
 
-
     
 
 
 
 
   
-    
+    bool CheckAirborne();
     void UpdateTireCalcs(Transform Tire);
     void PerformSuspensionCalc(Transform Tire, RaycastHit TireHit);
     void PerformSteeringCalc(Transform Tire, RaycastHit TireHit);
