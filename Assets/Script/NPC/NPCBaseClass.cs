@@ -1,7 +1,8 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 
-public class NPCBaseClass : MonoBehaviour
+public class NPCBaseClass : Knockable
 {
 
     private GameObject _player;
@@ -17,20 +18,68 @@ public class NPCBaseClass : MonoBehaviour
 
     [Header("Driving Status")]
     public Waypoint target;
+    public float distToTarget;
     public NPCAction currentAction;
+    public float carSpeed;
 
     [Header("Driving Perameters")]
-    public float topSpeed;
-    public AnimationCurve powerCurve;
-    public AnimationCurve steeringCurve;
-    public float maxSteeringAngle;
-    public float ackermanConstant;
-    public float tireMass;
-    [SerializeField] public Transform FR_Tire;
-    [SerializeField] public Transform FL_Tire;
-    [SerializeField] public Transform BL_Tire;
-    [SerializeField] public Transform BR_Tire;
+    public float laneChangeProbability;
+
+
+
+
     
+    
+    [Header("References")]
+    [SerializeField] public Transform distanceToWaypoint;
+
+
+
+
+
+ 
+    void TargetUpdate()
+    {
+        Vector3 distanceFromTarget = distanceToWaypoint.position - target.GetExactPosition();
+        distToTarget = distanceFromTarget.magnitude;
+        if(distanceFromTarget.magnitude < 1f)
+        {
+            if(target.NextWaypointA == null)//Any deadend
+                Destroy(gameObject);
+
+
+            if(target.waypointType == Waypoint.WaypointType.PATHING || target.waypointType == Waypoint.WaypointType.START)//Target Reached
+            {
+                float diceRoll = Random.Range(0f,1f);
+                if(diceRoll < laneChangeProbability)
+                {
+                    if(target.name == "WaypointA")
+                    {
+                        target = target.NextWaypointB;
+                    }
+                    else
+                    {
+                        target = target.NextWaypointA;
+                    }
+                    
+                }
+                else
+                {
+                    if(target.name == "WaypointA")
+                    {
+                        target = target.NextWaypointA;
+                    }
+                    else
+                    {
+                        target = target.NextWaypointB;
+                    }
+                }
+            }
+        }
+    }
+
+    public virtual void DriveNPC(){}//Virtual Function for different NPC to override
+
 
 
     void OnTriggerExit(Collider other)
@@ -44,6 +93,13 @@ public class NPCBaseClass : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void FixedUpdate()
+    {
+        TargetUpdate();
+        DriveNPC();
+        
     }
 
 }
