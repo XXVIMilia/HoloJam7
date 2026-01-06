@@ -39,7 +39,7 @@ public class Knockable : MonoBehaviour
                 float percent = _baseSpeedPower + (car.carSpeed / car.topSpeed);
                 _rb.AddExplosionForce(Mathf.Pow(_power, percent), transform.position, _radius, Mathf.Pow(_upwardsModifier, percent), _forceMode);
                 _isKnocked = true;
-                Destroy(this.GameObject, _destroyTime);
+                Destroy(this.gameObject, _destroyTime);
             }
         }
     }

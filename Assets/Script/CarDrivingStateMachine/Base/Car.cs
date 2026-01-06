@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System;
 using DG.Tweening;
 using Unity.Mathematics;
@@ -12,6 +13,7 @@ public class Car : MonoBehaviour, ICarMoveable
 
     public CarDrivingStateMachine carDrivingStateMachine { get; set; }
     public CarGroundedState carGroundedState { get; set; }
+    public CarDriftState carDriftState { get; set; }
     public CarOverturnedState carOverturnedState { get; set; }
     public CarAirborneState carAirborneState { get; set; }
     public AnimationCurve TorqueLookup { get; set; }
@@ -87,6 +89,7 @@ public class Car : MonoBehaviour, ICarMoveable
     {
         carDrivingStateMachine = new CarDrivingStateMachine();
         carGroundedState = new CarGroundedState(this, carDrivingStateMachine, carAnimator);
+        carDriftState = new CarDriftState(this, carDrivingStateMachine, carAnimator);
         carOverturnedState = new CarOverturnedState(this, carDrivingStateMachine, carAnimator);
         carAirborneState = new CarAirborneState(this, carDrivingStateMachine, carAnimator);
 
@@ -101,6 +104,9 @@ public class Car : MonoBehaviour, ICarMoveable
         controller.Car.Brake.canceled += _ => SetBrakeInput(0);
         controller.Car.Steering.performed += steeringCTX => SetSteeringInput(steeringCTX.ReadValue<float>());
         controller.Car.Steering.canceled += _ => SetSteeringInput(0f);
+        controller.Car.Drift.performed += SetDrift;
+        controller.Car.Drift.canceled += CancelDrift;
+
 
 
 
@@ -265,6 +271,16 @@ public class Car : MonoBehaviour, ICarMoveable
     {
         // print("Steering: " + steeringVal);
         steeringInput = steeringVal;
+    }
+
+    public void SetDrift(InputAction.CallbackContext context)
+    {
+        carDrivingStateMachine.ChangeState(carDriftState);
+    }
+
+    public void CancelDrift(InputAction.CallbackContext context)
+    {
+        carDrivingStateMachine.ChangeState(carDrivingStateMachine.PreviousCarDrivingState);
     }
 
     public bool CheckAirborne()
