@@ -24,6 +24,10 @@ public class Interactor : MonoBehaviour{
 
     private void Awake(){
         inputActions = new InputSystem_Actions();
+
+        if (InteractorSource == null){
+            InteractorSource = this.transform;
+        }
     }
 
     private void OnEnable(){

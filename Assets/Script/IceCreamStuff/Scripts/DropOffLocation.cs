@@ -16,7 +16,10 @@ public class DropOffLocation : InteractableObject{
     }
     
     private void OnEnable(){
-
+        if (DropOffManager.instance == null){
+            Debug.LogWarning("DropOffManager not ready yet.");
+            return;
+        }
         DropOffManager.instance.Register(this);
     }
 
