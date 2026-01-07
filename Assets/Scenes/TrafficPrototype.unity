@@ -3809,7 +3809,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 25
+  m_Radius: 35
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &5791405790083732571
 MonoBehaviour:
@@ -3824,7 +3824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCSpawner
   PoolOrigin: {fileID: 706697101}
-  nPC_Scriptable: {fileID: 0}
+  nPC_Scriptable: {fileID: 11400000, guid: 9519b93b27217cc6cb4a2a7a523c19e9, type: 2}
 --- !u!1 &5797791176059590100
 GameObject:
   m_ObjectHideFlags: 0
