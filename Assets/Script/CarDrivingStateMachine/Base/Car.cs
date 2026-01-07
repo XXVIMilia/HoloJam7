@@ -156,10 +156,7 @@ public class Car : MonoBehaviour, ICarMoveable
             CheckSpeed();
             Velocity.text = carSpeed.ToString();
 
-            if (accelInput > 0f)
-            {
-                PerformAccelerationCalc(Tire, hit);
-            }
+            PerformAccelerationCalc(Tire, hit);
             PerformBreakCalc(Tire, hit);
         }
 
@@ -260,7 +257,7 @@ public class Car : MonoBehaviour, ICarMoveable
 
     public void PerformBreakCalc(Transform Tire, RaycastHit TireHit)
     {
-        Vector3 accelDir = -1 * Tire.right;
+        Vector3 accelDir = Tire.right * -1;
         float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
         float availableTorque = brakeCurve.Evaluate(normalizedSpeed) * breakForce * brakeInput;
         Debug.DrawRay(Tire.position, accelDir * availableTorque, Color.purple);
@@ -279,7 +276,7 @@ public class Car : MonoBehaviour, ICarMoveable
         }
         else if (target < currentTractionPercent)
         {
-            currentTractionPercent -= Time.deltaTime ;
+            currentTractionPercent -= Time.deltaTime;
             if (currentTractionPercent <= target)
             {
                 currentTractionPercent = target;
