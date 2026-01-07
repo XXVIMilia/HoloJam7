@@ -10,7 +10,6 @@ using TMPro;
 public class Car : MonoBehaviour, ICarMoveable
 {
     #region Declarations
-
     public CarDrivingStateMachine carDrivingStateMachine { get; set; }
     public CarGroundedState carGroundedState { get; set; }
     public CarDriftState carDriftState { get; set; }
@@ -22,13 +21,13 @@ public class Car : MonoBehaviour, ICarMoveable
     public float steeringInput { get; set; }
     public int tireAirborn { get; set; }
 
-    //Suspension Details
+    [Header("Suspension")]
     public float SuspensionOffset = 0.5f;
     public float SuspensionStrength = 0.5f;
     public float DamperStrength = 0.1f;
     public float JumpForce = 5f;
 
-    //Steering Details
+    [Header("Steering")]
     public AnimationCurve FrontTireGrip;
     public AnimationCurve BackTireGrip;
     public enum DriveTrainType
@@ -39,6 +38,7 @@ public class Car : MonoBehaviour, ICarMoveable
     }
     public DriveTrainType CarDriveTrain;
 
+    [Header("Speed Rules")]
     public float topSpeed;
     public float carSpeed;
     public AnimationCurve powerCurve;
@@ -47,7 +47,11 @@ public class Car : MonoBehaviour, ICarMoveable
     public float ackermanConstant;
     public float tireMass;
 
+    [Header("Drifting")]
+    [SerializeField] private float tractionPercent = 0.5f;
+
     //Tires: Assumes 4 Tires for all cars. No peanut or motorcycle unless implementation is changed
+    [Header("References")]
     [SerializeField] public Transform FR_Tire;
     [SerializeField] public Transform FL_Tire;
     [SerializeField] public Transform BL_Tire;
@@ -56,8 +60,11 @@ public class Car : MonoBehaviour, ICarMoveable
     //RB for tire calcs to act on
     public Rigidbody CarRB;
     public BoxCollider CarCol;
+    [SerializeField] public TrailRenderer BR_Trail;
+    [SerializeField] public TrailRenderer BL_Trail;
 
     //Car Specific animations. Not added rn
+    [Header("Animator")]
     public Animator carAnimator;
 
     public InputSystem_Actions controller;
@@ -65,7 +72,7 @@ public class Car : MonoBehaviour, ICarMoveable
     #endregion
 
     #region Debug
-
+    [Header("Debug")]
     public TextMeshProUGUI Velocity;
     public TextMeshProUGUI Accel;
 
@@ -134,8 +141,9 @@ public class Car : MonoBehaviour, ICarMoveable
         {
             PerformSuspensionCalc(Tire, hit);
             PerformSteeringCalc(Tire, hit);
-            carSpeed = Vector3.Dot(transform.right, CarRB.linearVelocity);
+            CheckSpeed();
             Velocity.text = carSpeed.ToString();
+
             if (accelInput > 0.1f)
             {
                 PerformAccelerationCalc(Tire, hit);
@@ -174,36 +182,66 @@ public class Car : MonoBehaviour, ICarMoveable
         Vector3 tireVel = CarRB.GetPointVelocity(Tire.position);
         float steeringVel = Vector3.Dot(tireVel, steeringDir);
         float steeringRatio = Mathf.Clamp01(Vector3.Angle(tireVel, steeringDir) / 90f);
-        if (Tire.name.StartsWith("F"))
-        {
-            float desireVelChange = -steeringVel * FrontTireGrip.Evaluate(steeringRatio);
-            float desiredAccel = desireVelChange / Time.fixedDeltaTime;
-            Debug.DrawRay(Tire.position, steeringDir * tireMass * desiredAccel, Color.red);
-            CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
-
-
-        }
-        else if (Tire.name.StartsWith("B"))
-        {
-            float desireVelChange = -steeringVel * BackTireGrip.Evaluate(steeringRatio);
-            float desiredAccel = desireVelChange / Time.fixedDeltaTime;
-            // print(Tire.name + " Tire grip: " + desiredAccel);
-            CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
-
-
-        }
-        else
-        {
-            // print("Tire Naming error, using 0.3 grip");
-            float desireVelChange = -steeringVel * 0.3f;
-            float desiredAccel = desireVelChange / Time.fixedDeltaTime;
-            CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
-        }
 
         if (carDrivingStateMachine.CurrentCarDrivingState == carDriftState)
         {
-            Debug.Log("Drift Steering");
+            if (Tire.name.StartsWith("F"))
+            {
+                float desireVelChange = -steeringVel * FrontTireGrip.Evaluate(steeringRatio) * tractionPercent;
+                float desiredAccel = desireVelChange / Time.fixedDeltaTime;
+                Debug.DrawRay(Tire.position, steeringDir * tireMass * desiredAccel, Color.red);
+                CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
+
+
+            }
+            else if (Tire.name.StartsWith("B"))
+            {
+                float desireVelChange = -steeringVel * BackTireGrip.Evaluate(steeringRatio) * tractionPercent;
+                float desiredAccel = desireVelChange / Time.fixedDeltaTime;
+                // print(Tire.name + " Tire grip: " + desiredAccel);
+                CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
+
+
+            }
+            else
+            {
+                // print("Tire Naming error, using 0.3 grip");
+                float desireVelChange = -steeringVel * 0.3f;
+                float desiredAccel = desireVelChange / Time.fixedDeltaTime;
+                CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
+            }
         }
+        else
+        {
+            if (Tire.name.StartsWith("F"))
+            {
+                float desireVelChange = -steeringVel * FrontTireGrip.Evaluate(steeringRatio);
+                float desiredAccel = desireVelChange / Time.fixedDeltaTime;
+                Debug.DrawRay(Tire.position, steeringDir * tireMass * desiredAccel, Color.red);
+                CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
+
+
+            }
+            else if (Tire.name.StartsWith("B"))
+            {
+                float desireVelChange = -steeringVel * BackTireGrip.Evaluate(steeringRatio);
+                float desiredAccel = desireVelChange / Time.fixedDeltaTime;
+                // print(Tire.name + " Tire grip: " + desiredAccel);
+                CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
+
+
+            }
+            else
+            {
+                // print("Tire Naming error, using 0.3 grip");
+                float desireVelChange = -steeringVel * 0.3f;
+                float desiredAccel = desireVelChange / Time.fixedDeltaTime;
+                CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
+            }
+        }
+
+
+
 
         if (CarDriveTrain == DriveTrainType.BACK)
         {
@@ -296,6 +334,11 @@ public class Car : MonoBehaviour, ICarMoveable
         Debug.DrawRay(transform.position, -transform.up * 0.65f, Color.orange);
         return Physics.Raycast(transform.position, -transform.up, 0.75f, LayerMask.NameToLayer("Player"));
 
+    }
+
+    private void CheckSpeed()
+    {
+        carSpeed = Vector3.Dot(transform.right, CarRB.linearVelocity);
     }
 
     #endregion

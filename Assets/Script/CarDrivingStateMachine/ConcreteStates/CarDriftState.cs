@@ -15,10 +15,15 @@ public class CarDriftState : CarDrivingState
         base.EnterState();
         car.JumpForce = 2f;
         Debug.Log("Entering Drift State");
+        car.BR_Trail.emitting = true;
+        car.BL_Trail.emitting = true;
+
     }
 
     public override void ExitState()
     {
+        car.BR_Trail.emitting = false;
+        car.BL_Trail.emitting = false;
         base.ExitState();
     }
 

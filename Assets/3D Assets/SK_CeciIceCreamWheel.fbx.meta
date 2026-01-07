@@ -3,7 +3,12 @@ guid: 70ddb8d22bb4cd941860db82510e543f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IceCreamWheel
+    second: {fileID: 2100000, guid: 5189118df9bad064490baa1927fce501, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
