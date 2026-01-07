@@ -21,6 +21,7 @@ public class NPCBaseClass : Knockable
     public float distToTarget;
     public NPCAction currentAction;
     public float carSpeed;
+    public float turnSpeed;
 
     [Header("Driving Perameters")]
     public float laneChangeProbability;
@@ -86,7 +87,7 @@ public class NPCBaseClass : Knockable
     {
         if (other.gameObject == _player)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 

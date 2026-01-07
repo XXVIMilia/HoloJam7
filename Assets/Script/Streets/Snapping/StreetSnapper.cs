@@ -142,7 +142,6 @@ if (setName)
                 selfSet[1].NextWaypointA = targetSet[3];
                 selfSet[1].NextWaypointB = targetSet[2];
                 PrefabUtility.RecordPrefabInstancePropertyModifications(selfSet[1]);
-
                 targetSet[0].NextWaypointA = selfSet[2];
                 targetSet[0].NextWaypointB = selfSet[3];
                 PrefabUtility.RecordPrefabInstancePropertyModifications(targetSet[0]);

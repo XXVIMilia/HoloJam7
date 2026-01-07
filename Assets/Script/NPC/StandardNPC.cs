@@ -15,8 +15,8 @@ public class StandardNPC : NPCBaseClass
             Vector3 dirToDrive = target.GetExactPosition() - distanceToWaypoint.position;
             dirToDrive.y = 0f;
             Quaternion targetRotation =  Quaternion.LookRotation(dirToDrive);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation,targetRotation,50f * Time.deltaTime);
-            transform.Translate(Vector3.forward * 5f * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,targetRotation,turnSpeed* Time.deltaTime);
+            transform.Translate(Vector3.forward * carSpeed * Time.deltaTime);
             Debug.DrawRay(distanceToWaypoint.position,dirToDrive.normalized,Color.black);
         }
         
