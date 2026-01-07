@@ -134,6 +134,8 @@ public class Car : MonoBehaviour, ICarMoveable
         {
             PerformSuspensionCalc(Tire, hit);
             PerformSteeringCalc(Tire, hit);
+            carSpeed = Vector3.Dot(transform.right, CarRB.linearVelocity);
+            Velocity.text = carSpeed.ToString();
             if (accelInput > 0.1f)
             {
                 PerformAccelerationCalc(Tire, hit);
@@ -198,6 +200,11 @@ public class Car : MonoBehaviour, ICarMoveable
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
         }
 
+        if (carDrivingStateMachine.CurrentCarDrivingState == carDriftState)
+        {
+            Debug.Log("Drift Steering");
+        }
+
         if (CarDriveTrain == DriveTrainType.BACK)
         {
             if (Tire.name.StartsWith("FL"))
@@ -230,8 +237,6 @@ public class Car : MonoBehaviour, ICarMoveable
     public void PerformAccelerationCalc(Transform Tire, RaycastHit TireHit)
     {
         Vector3 accelDir = Tire.right;
-        carSpeed = Vector3.Dot(transform.right, CarRB.linearVelocity);
-        Velocity.text = carSpeed.ToString();
         float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
         // print(normalizedSpeed);
         float availableTorque = powerCurve.Evaluate(normalizedSpeed) * accelInput;
@@ -243,10 +248,9 @@ public class Car : MonoBehaviour, ICarMoveable
     public void PerformBreakCalc(Transform Tire, RaycastHit TireHit)
     {
         Vector3 accelDir = -1 * Tire.right;
-        carSpeed = Vector3.Dot(transform.right, CarRB.linearVelocity);
         float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
         // print(powerCurve.Evaluate(1-normalizedSpeed));
-        float availableTorque = powerCurve.Evaluate(1 - normalizedSpeed) * brakeInput;
+        float availableTorque = 5 * brakeInput;
         Debug.DrawRay(Tire.position, accelDir * availableTorque, Color.purple);
         CarRB.AddForceAtPosition(accelDir * availableTorque, Tire.position);
     }
@@ -275,7 +279,10 @@ public class Car : MonoBehaviour, ICarMoveable
 
     public void SetDrift(InputAction.CallbackContext context)
     {
-        carDrivingStateMachine.ChangeState(carDriftState);
+        if (CheckAirborne())
+        {
+            carDrivingStateMachine.ChangeState(carDriftState);
+        }
     }
 
     public void CancelDrift(InputAction.CallbackContext context)
