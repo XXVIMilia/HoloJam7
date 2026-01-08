@@ -817,6 +817,31 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  steeringCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.20229885
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSteeringAngle: 25
   CarDriveTrain: 1
   topSpeed: 50
   accelForce: 3
@@ -872,30 +897,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  steeringCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: -0.5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   brakeCurve:
     serializedVersion: 2
     m_Curve:
@@ -930,11 +931,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   breakForce: 5
-  maxSteeringAngle: 25
   ackermanConstant: 1.5
   tireMass: 0.67
-  driftTractionPercent: 0.1
+  driftTractionPercent: 0.3
   currentTractionPercent: 1
+  driftSteer: 1
   FR_Tire: {fileID: 1269593819305611240}
   FL_Tire: {fileID: 3597628388755733159}
   BL_Tire: {fileID: 348847736929397120}
@@ -980,7 +981,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5791405790444940647}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b339b3c3b0e3d264da6eb840173594f9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1326,7 +1327,7 @@ Transform:
   m_GameObject: {fileID: 6678504288702752857}
   serializedVersion: 2
   m_LocalRotation: {x: 0.035223596, y: 0.706229, z: -0.035223596, w: 0.7062289}
-  m_LocalPosition: {x: -33.950047, y: 3.44, z: 9.780006}
+  m_LocalPosition: {x: -35.616714, y: 3.6066666, z: 9.7800045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1562,8 +1563,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -28.78, y: 0.44, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4581439115970010467}
   - {fileID: 7796960484874567199}
@@ -1776,7 +1777,7 @@ Transform:
   m_GameObject: {fileID: 8828044834027947667}
   serializedVersion: 2
   m_LocalRotation: {x: 0.03522358, y: 0.706229, z: -0.03522359, w: 0.7062289}
-  m_LocalPosition: {x: -33.950047, y: 3.44, z: 9.780006}
+  m_LocalPosition: {x: -35.616714, y: 3.6066666, z: 9.7800045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2095,6 +2096,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 348847736929397120}
     m_Modifications:
+    - target: {fileID: 2725407238650629345, guid: 3adb6239ef34d2d409dcbebeba8842df, type: 3}
+      propertyPath: m_Time
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3150315617068778174, guid: 3adb6239ef34d2d409dcbebeba8842df, type: 3}
       propertyPath: m_Name
       value: SkidMarks
@@ -2162,6 +2167,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5538704339055259969}
     m_Modifications:
+    - target: {fileID: 2725407238650629345, guid: 3adb6239ef34d2d409dcbebeba8842df, type: 3}
+      propertyPath: m_Time
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 2725407238650629345, guid: 3adb6239ef34d2d409dcbebeba8842df, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2288,6 +2297,14 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 55081974fea45ca7a9a87ff9d8ae2704, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5725621135151599090, guid: 55081974fea45ca7a9a87ff9d8ae2704, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5725621135151599090, guid: 55081974fea45ca7a9a87ff9d8ae2704, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.7
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 55081974fea45ca7a9a87ff9d8ae2704, type: 3}
       propertyPath: m_Name

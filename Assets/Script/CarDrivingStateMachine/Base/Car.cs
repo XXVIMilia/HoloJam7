@@ -30,6 +30,9 @@ public class Car : MonoBehaviour, ICarMoveable
     [Header("Steering")]
     public AnimationCurve FrontTireGrip;
     public AnimationCurve BackTireGrip;
+    public AnimationCurve steeringCurve;
+    public float maxSteeringAngle;
+
     public enum DriveTrainType
     {
         FRONT,
@@ -43,16 +46,16 @@ public class Car : MonoBehaviour, ICarMoveable
     public float accelForce = 5f;
     public float carSpeed;
     public AnimationCurve powerCurve;
-    public AnimationCurve steeringCurve;
     public AnimationCurve brakeCurve;
     public float breakForce = 5;
-    public float maxSteeringAngle;
     public float ackermanConstant;
     public float tireMass;
 
     [Header("Drifting")]
     [SerializeField] private float driftTractionPercent = 0.5f;
     [SerializeField] private float currentTractionPercent = 1f;
+    [SerializeField] private float driftSteer = 1f;
+
 
     //Tires: Assumes 4 Tires for all cars. No peanut or motorcycle unless implementation is changed
     [Header("References")]
@@ -115,7 +118,7 @@ public class Car : MonoBehaviour, ICarMoveable
         controller.Car.Brake.canceled += _ => SetBrakeInput(0);
         controller.Car.Steering.performed += steeringCTX => SetSteeringInput(steeringCTX.ReadValue<float>());
         controller.Car.Steering.canceled += _ => SetSteeringInput(0f);
-        controller.Car.Drift.performed += SetDrift;
+        controller.Car.Drift.started += SetDrift;
         controller.Car.Drift.canceled += CancelDrift;
 
 
@@ -191,7 +194,6 @@ public class Car : MonoBehaviour, ICarMoveable
         float steeringVel = Vector3.Dot(tireVel, steeringDir);
         float steeringRatio = Mathf.Clamp01(Vector3.Angle(tireVel, steeringDir) / 90f);
 
-
         if (Tire.name.StartsWith("F"))
         {
             float desireVelChange = -steeringVel * FrontTireGrip.Evaluate(steeringRatio) * currentTractionPercent;
@@ -218,6 +220,21 @@ public class Car : MonoBehaviour, ICarMoveable
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
         }
 
+        float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
+        if (carDrivingStateMachine.CurrentCarDrivingState == carDriftState)
+        {
+            normalizedSpeed = 0f;
+
+            if (Tire.name.StartsWith("B"))
+            {
+                float desiredAccel = driftSteer / Time.fixedDeltaTime;
+                // print(Tire.name + " Tire grip: " + desiredAccel);
+                CarRB.AddForceAtPosition(-steeringDir * steeringInput * desiredAccel, Tire.position);
+
+            }
+
+        }
+
         if (CarDriveTrain == DriveTrainType.BACK)
         {
             if (Tire.name.StartsWith("FL"))
@@ -225,7 +242,7 @@ public class Car : MonoBehaviour, ICarMoveable
                 if (steeringInput < 0f)
                 {
                     // print(Tire.name + "AckermanOffset: " + ackermanConstant * steeringInput);
-                    Tire.localRotation = Quaternion.AngleAxis(ackermanConstant * steeringInput * maxSteeringAngle, transform.up);
+                    Tire.localRotation = Quaternion.AngleAxis(ackermanConstant * steeringInput * steeringCurve.Evaluate(normalizedSpeed) * maxSteeringAngle, transform.up);
                 }
                 else
                 {
@@ -237,7 +254,7 @@ public class Car : MonoBehaviour, ICarMoveable
                 if (steeringInput > 0f)
                 {
                     // print(Tire.name + "AckermanOffset: " + ackermanConstant * steeringInput);
-                    Tire.localRotation = Quaternion.AngleAxis(ackermanConstant * steeringInput * maxSteeringAngle, transform.up);
+                    Tire.localRotation = Quaternion.AngleAxis(ackermanConstant * steeringInput * steeringCurve.Evaluate(normalizedSpeed) * maxSteeringAngle, transform.up);
                 }
                 else
                 {
@@ -329,8 +346,8 @@ public class Car : MonoBehaviour, ICarMoveable
     public bool CheckAirborne()
     {
         //Vector3 YOffset = new Vector3(0f,CarCol.size.y + 0.666f,0f);
-        Debug.DrawRay(transform.position, -transform.up * 0.65f, Color.orange);
-        return Physics.Raycast(transform.position, -transform.up, 0.75f, LayerMask.NameToLayer("Player"));
+        Debug.DrawRay(transform.position, -transform.up * 1f, Color.orange);
+        return Physics.Raycast(transform.position, -transform.up, 1f, LayerMask.NameToLayer("Player"));
 
     }
 
