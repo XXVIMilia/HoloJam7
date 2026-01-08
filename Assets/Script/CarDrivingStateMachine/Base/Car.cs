@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System;
 using DG.Tweening;
 using Unity.Mathematics;
@@ -9,9 +10,9 @@ using TMPro;
 public class Car : MonoBehaviour, ICarMoveable
 {
     #region Declarations
-
     public CarDrivingStateMachine carDrivingStateMachine { get; set; }
     public CarGroundedState carGroundedState { get; set; }
+    public CarDriftState carDriftState { get; set; }
     public CarOverturnedState carOverturnedState { get; set; }
     public CarAirborneState carAirborneState { get; set; }
     public AnimationCurve TorqueLookup { get; set; }
@@ -20,15 +21,18 @@ public class Car : MonoBehaviour, ICarMoveable
     public float steeringInput { get; set; }
     public int tireAirborn { get; set; }
 
-    //Suspension Details
+    [Header("Suspension")]
     public float SuspensionOffset = 0.5f;
     public float SuspensionStrength = 0.5f;
     public float DamperStrength = 0.1f;
     public float JumpForce = 5f;
 
-    //Steering Details
+    [Header("Steering")]
     public AnimationCurve FrontTireGrip;
     public AnimationCurve BackTireGrip;
+    public AnimationCurve steeringCurve;
+    public float maxSteeringAngle;
+
     public enum DriveTrainType
     {
         FRONT,
@@ -37,15 +41,24 @@ public class Car : MonoBehaviour, ICarMoveable
     }
     public DriveTrainType CarDriveTrain;
 
+    [Header("Speed Rules")]
     public float topSpeed;
+    public float accelForce = 5f;
     public float carSpeed;
     public AnimationCurve powerCurve;
-    public AnimationCurve steeringCurve;
-    public float maxSteeringAngle;
+    public AnimationCurve brakeCurve;
+    public float breakForce = 5;
     public float ackermanConstant;
     public float tireMass;
 
+    [Header("Drifting")]
+    [SerializeField] private float driftTractionPercent = 0.5f;
+    [SerializeField] private float currentTractionPercent = 1f;
+    [SerializeField] private float driftSteer = 1f;
+
+
     //Tires: Assumes 4 Tires for all cars. No peanut or motorcycle unless implementation is changed
+    [Header("References")]
     [SerializeField] public Transform FR_Tire;
     [SerializeField] public Transform FL_Tire;
     [SerializeField] public Transform BL_Tire;
@@ -54,8 +67,11 @@ public class Car : MonoBehaviour, ICarMoveable
     //RB for tire calcs to act on
     public Rigidbody CarRB;
     public BoxCollider CarCol;
+    [SerializeField] public TrailRenderer BR_Trail;
+    [SerializeField] public TrailRenderer BL_Trail;
 
     //Car Specific animations. Not added rn
+    [Header("Animator")]
     public Animator carAnimator;
 
     public InputSystem_Actions controller;
@@ -63,7 +79,7 @@ public class Car : MonoBehaviour, ICarMoveable
     #endregion
 
     #region Debug
-
+    [Header("Debug")]
     public TextMeshProUGUI Velocity;
     public TextMeshProUGUI Accel;
 
@@ -87,6 +103,7 @@ public class Car : MonoBehaviour, ICarMoveable
     {
         carDrivingStateMachine = new CarDrivingStateMachine();
         carGroundedState = new CarGroundedState(this, carDrivingStateMachine, carAnimator);
+        carDriftState = new CarDriftState(this, carDrivingStateMachine, carAnimator);
         carOverturnedState = new CarOverturnedState(this, carDrivingStateMachine, carAnimator);
         carAirborneState = new CarAirborneState(this, carDrivingStateMachine, carAnimator);
 
@@ -101,6 +118,9 @@ public class Car : MonoBehaviour, ICarMoveable
         controller.Car.Brake.canceled += _ => SetBrakeInput(0);
         controller.Car.Steering.performed += steeringCTX => SetSteeringInput(steeringCTX.ReadValue<float>());
         controller.Car.Steering.canceled += _ => SetSteeringInput(0f);
+        controller.Car.Drift.started += SetDrift;
+        controller.Car.Drift.canceled += CancelDrift;
+
 
 
 
@@ -109,6 +129,14 @@ public class Car : MonoBehaviour, ICarMoveable
     private void Update()
     {
         carDrivingStateMachine.CurrentCarDrivingState.FrameUpdate();
+        if (carDrivingStateMachine.CurrentCarDrivingState == carGroundedState && currentTractionPercent < 1)
+        {
+            LerpTraction(1f);
+        }
+        else if (carDrivingStateMachine.CurrentCarDrivingState == carDriftState && currentTractionPercent > driftTractionPercent)
+        {
+            LerpTraction(driftTractionPercent);
+        }
     }
 
     private void FixedUpdate()
@@ -128,15 +156,14 @@ public class Car : MonoBehaviour, ICarMoveable
         {
             PerformSuspensionCalc(Tire, hit);
             PerformSteeringCalc(Tire, hit);
-            if (accelInput > 0.1f)
+            CheckSpeed();
+            if (Velocity != null)
             {
-                PerformAccelerationCalc(Tire, hit);
+                Velocity.text = carSpeed.ToString();
             }
 
-            if (brakeInput > 0.1f)
-            {
-                PerformBreakCalc(Tire, hit);
-            }
+            PerformAccelerationCalc(Tire, hit);
+            PerformBreakCalc(Tire, hit);
         }
 
     }
@@ -166,9 +193,10 @@ public class Car : MonoBehaviour, ICarMoveable
         Vector3 tireVel = CarRB.GetPointVelocity(Tire.position);
         float steeringVel = Vector3.Dot(tireVel, steeringDir);
         float steeringRatio = Mathf.Clamp01(Vector3.Angle(tireVel, steeringDir) / 90f);
+
         if (Tire.name.StartsWith("F"))
         {
-            float desireVelChange = -steeringVel * FrontTireGrip.Evaluate(steeringRatio);
+            float desireVelChange = -steeringVel * FrontTireGrip.Evaluate(steeringRatio) * currentTractionPercent;
             float desiredAccel = desireVelChange / Time.fixedDeltaTime;
             Debug.DrawRay(Tire.position, steeringDir * tireMass * desiredAccel, Color.red);
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
@@ -177,7 +205,7 @@ public class Car : MonoBehaviour, ICarMoveable
         }
         else if (Tire.name.StartsWith("B"))
         {
-            float desireVelChange = -steeringVel * BackTireGrip.Evaluate(steeringRatio);
+            float desireVelChange = -steeringVel * BackTireGrip.Evaluate(steeringRatio) * currentTractionPercent;
             float desiredAccel = desireVelChange / Time.fixedDeltaTime;
             // print(Tire.name + " Tire grip: " + desiredAccel);
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
@@ -192,6 +220,21 @@ public class Car : MonoBehaviour, ICarMoveable
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
         }
 
+        float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
+        if (carDrivingStateMachine.CurrentCarDrivingState == carDriftState)
+        {
+            normalizedSpeed = 0f;
+
+            if (Tire.name.StartsWith("B"))
+            {
+                float desiredAccel = driftSteer / Time.fixedDeltaTime;
+                // print(Tire.name + " Tire grip: " + desiredAccel);
+                CarRB.AddForceAtPosition(-steeringDir * steeringInput * desiredAccel, Tire.position);
+
+            }
+
+        }
+
         if (CarDriveTrain == DriveTrainType.BACK)
         {
             if (Tire.name.StartsWith("FL"))
@@ -199,7 +242,7 @@ public class Car : MonoBehaviour, ICarMoveable
                 if (steeringInput < 0f)
                 {
                     // print(Tire.name + "AckermanOffset: " + ackermanConstant * steeringInput);
-                    Tire.localRotation = Quaternion.AngleAxis(ackermanConstant * steeringInput * maxSteeringAngle, transform.up);
+                    Tire.localRotation = Quaternion.AngleAxis(ackermanConstant * steeringInput * steeringCurve.Evaluate(normalizedSpeed) * maxSteeringAngle, transform.up);
                 }
                 else
                 {
@@ -211,7 +254,7 @@ public class Car : MonoBehaviour, ICarMoveable
                 if (steeringInput > 0f)
                 {
                     // print(Tire.name + "AckermanOffset: " + ackermanConstant * steeringInput);
-                    Tire.localRotation = Quaternion.AngleAxis(ackermanConstant * steeringInput * maxSteeringAngle, transform.up);
+                    Tire.localRotation = Quaternion.AngleAxis(ackermanConstant * steeringInput * steeringCurve.Evaluate(normalizedSpeed) * maxSteeringAngle, transform.up);
                 }
                 else
                 {
@@ -224,25 +267,45 @@ public class Car : MonoBehaviour, ICarMoveable
     public void PerformAccelerationCalc(Transform Tire, RaycastHit TireHit)
     {
         Vector3 accelDir = Tire.right;
-        carSpeed = Vector3.Dot(transform.right, CarRB.linearVelocity);
-        Velocity.text = carSpeed.ToString();
         float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
         // print(normalizedSpeed);
-        float availableTorque = powerCurve.Evaluate(normalizedSpeed) * accelInput;
-        Accel.text = availableTorque.ToString();
+        float availableTorque = powerCurve.Evaluate(normalizedSpeed) * accelForce * accelInput;
+        if (Accel != null)
+        {
+            Accel.text = availableTorque.ToString();
+        }
+
         Debug.DrawRay(Tire.position, accelDir * availableTorque, Color.blue);
         CarRB.AddForceAtPosition(accelDir * availableTorque, Tire.position);
     }
 
     public void PerformBreakCalc(Transform Tire, RaycastHit TireHit)
     {
-        Vector3 accelDir = -1 * Tire.right;
-        carSpeed = Vector3.Dot(transform.right, CarRB.linearVelocity);
+        Vector3 accelDir = Tire.right * -1;
         float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
-        // print(powerCurve.Evaluate(1-normalizedSpeed));
-        float availableTorque = powerCurve.Evaluate(1 - normalizedSpeed) * brakeInput;
+        float availableTorque = brakeCurve.Evaluate(normalizedSpeed) * breakForce * brakeInput;
         Debug.DrawRay(Tire.position, accelDir * availableTorque, Color.purple);
         CarRB.AddForceAtPosition(accelDir * availableTorque, Tire.position);
+    }
+
+    private void LerpTraction(float target)
+    {
+        if (target > currentTractionPercent)
+        {
+            currentTractionPercent += Time.deltaTime / 3;
+            if (currentTractionPercent >= target)
+            {
+                currentTractionPercent = target;
+            }
+        }
+        else if (target < currentTractionPercent)
+        {
+            currentTractionPercent -= Time.deltaTime;
+            if (currentTractionPercent <= target)
+            {
+                currentTractionPercent = target;
+            }
+        }
     }
 
     #endregion
@@ -267,12 +330,30 @@ public class Car : MonoBehaviour, ICarMoveable
         steeringInput = steeringVal;
     }
 
+    public void SetDrift(InputAction.CallbackContext context)
+    {
+        if (CheckAirborne())
+        {
+            carDrivingStateMachine.ChangeState(carDriftState);
+        }
+    }
+
+    public void CancelDrift(InputAction.CallbackContext context)
+    {
+        carDrivingStateMachine.ChangeState(carDrivingStateMachine.PreviousCarDrivingState);
+    }
+
     public bool CheckAirborne()
     {
         //Vector3 YOffset = new Vector3(0f,CarCol.size.y + 0.666f,0f);
-        Debug.DrawRay(transform.position, -transform.up * 0.65f, Color.orange);
-        return Physics.Raycast(transform.position, -transform.up, 0.75f, LayerMask.NameToLayer("Player"));
+        Debug.DrawRay(transform.position, -transform.up * 1f, Color.orange);
+        return Physics.Raycast(transform.position, -transform.up, 1f, LayerMask.NameToLayer("Player"));
 
+    }
+
+    private void CheckSpeed()
+    {
+        carSpeed = Vector3.Dot(transform.right, CarRB.linearVelocity);
     }
 
     #endregion
