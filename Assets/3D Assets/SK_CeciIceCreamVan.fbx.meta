@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: IceCreamVan
     second: {fileID: 2100000, guid: c076135c59648ae4f94e21d41f311b99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IceCreamWheel
+    second: {fileID: 2100000, guid: 5189118df9bad064490baa1927fce501, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
