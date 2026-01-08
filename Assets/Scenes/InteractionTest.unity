@@ -164,6 +164,11 @@ Transform:
   - {fileID: 1136887839}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &351746866 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6937546020563978527, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
+  m_PrefabInstance: {fileID: 5655768260621019817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &352983315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,6 +1351,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07e2cb3b9735de4790b6a6c62d0f905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DropOffManager
+--- !u!4 &740818358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2348178522889861188, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
+  m_PrefabInstance: {fileID: 5655768260621019817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,6 +2395,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerIceCream
   slotsContainer: {fileID: 601669850}
+--- !u!54 &1597406176 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 750864746229783410, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
+  m_PrefabInstance: {fileID: 5655768260621019817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1675681129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,6 +2887,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802901668}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1871597111 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7737521383755001819, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
+  m_PrefabInstance: {fileID: 5655768260621019817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1882564562
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,6 +3474,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.19610023
       objectReference: {fileID: 0}
+    - target: {fileID: 3998474798855346500, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
+      propertyPath: CarRB
+      value: 
+      objectReference: {fileID: 1597406176}
+    - target: {fileID: 3998474798855346500, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
+      propertyPath: CarCol
+      value: 
+      objectReference: {fileID: 351746866}
+    - target: {fileID: 3998474798855346500, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
+      propertyPath: BL_Tire
+      value: 
+      objectReference: {fileID: 1871597111}
+    - target: {fileID: 3998474798855346500, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
+      propertyPath: BR_Tire
+      value: 
+      objectReference: {fileID: 740818358}
     - target: {fileID: 5798551012096044634, guid: 1d1e1570b4ef6c06c83169391c748f1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.00000011920929
