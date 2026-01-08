@@ -154,7 +154,10 @@ public class Car : MonoBehaviour, ICarMoveable
             PerformSuspensionCalc(Tire, hit);
             PerformSteeringCalc(Tire, hit);
             CheckSpeed();
-            Velocity.text = carSpeed.ToString();
+            if (Velocity != null)
+            {
+                Velocity.text = carSpeed.ToString();
+            }
 
             PerformAccelerationCalc(Tire, hit);
             PerformBreakCalc(Tire, hit);
@@ -250,7 +253,11 @@ public class Car : MonoBehaviour, ICarMoveable
         float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
         // print(normalizedSpeed);
         float availableTorque = powerCurve.Evaluate(normalizedSpeed) * accelForce * accelInput;
-        Accel.text = availableTorque.ToString();
+        if (Accel != null)
+        {
+            Accel.text = availableTorque.ToString();
+        }
+
         Debug.DrawRay(Tire.position, accelDir * availableTorque, Color.blue);
         CarRB.AddForceAtPosition(accelDir * availableTorque, Tire.position);
     }
