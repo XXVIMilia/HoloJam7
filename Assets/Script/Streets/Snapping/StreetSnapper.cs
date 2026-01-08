@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 [ExecuteInEditMode()]
 public class StreetSnapper : MonoBehaviour
@@ -130,31 +131,39 @@ if (setName)
 
             targetSet = SnapPointTarget.GetComponentInParent<StreetSnapper>().QuerySet(SnapPointTarget.name);
 
+
+
             if(spheres.Length == 2)
             {
+            
                 selfSet[0].NextWaypointA = targetSet[2];
                 selfSet[0].NextWaypointB = targetSet[3];
+                PrefabUtility.RecordPrefabInstancePropertyModifications(selfSet[0]);
                 selfSet[1].NextWaypointA = targetSet[3];
                 selfSet[1].NextWaypointB = targetSet[2];
-
-
+                PrefabUtility.RecordPrefabInstancePropertyModifications(selfSet[1]);
                 targetSet[0].NextWaypointA = selfSet[2];
                 targetSet[0].NextWaypointB = selfSet[3];
+                PrefabUtility.RecordPrefabInstancePropertyModifications(targetSet[0]);
                 targetSet[1].NextWaypointA = selfSet[2];
                 targetSet[1].NextWaypointB = selfSet[3];
+                PrefabUtility.RecordPrefabInstancePropertyModifications(targetSet[1]);
             }
             else
             {
-                selfSet[0].NextWaypointB = targetSet[0];
-                selfSet[0].NextWaypointA = targetSet[0];
-                selfSet[1].NextWaypointB = targetSet[1];
-                selfSet[1].NextWaypointA = targetSet[1];
-
+                selfSet[0].NextWaypointB = targetSet[2];
+                selfSet[0].NextWaypointA = targetSet[3];
+                PrefabUtility.RecordPrefabInstancePropertyModifications(selfSet[0]);
+                selfSet[1].NextWaypointB = targetSet[3];
+                selfSet[1].NextWaypointA = targetSet[2];
+                PrefabUtility.RecordPrefabInstancePropertyModifications(selfSet[1]);
 
                 targetSet[0].NextWaypointB = selfSet[2];
                 targetSet[0].NextWaypointA = selfSet[3];
+                PrefabUtility.RecordPrefabInstancePropertyModifications(targetSet[0]);
                 targetSet[1].NextWaypointB = selfSet[2];
                 targetSet[1].NextWaypointA = selfSet[3];
+                PrefabUtility.RecordPrefabInstancePropertyModifications(targetSet[1]);
             }
             
             
