@@ -200,7 +200,8 @@ MonoBehaviour:
   distToTarget: 0
   currentAction: 0
   carSpeed: 5
-  turnSpeed: 50
+  turnSpeed: 60
+  updateTargetCountdown: 0
   laneChangeProbability: 0.15
   distanceToWaypoint: {fileID: 1629038376494489020}
 --- !u!54 &1619932811686468011

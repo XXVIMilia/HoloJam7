@@ -72,7 +72,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1521045060754779820, guid: e6b0b9bcd780cc06f90474ea3e135539, type: 3}
       propertyPath: m_Mass
-      value: 0.15
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5453597115099364248, guid: e6b0b9bcd780cc06f90474ea3e135539, type: 3}
       propertyPath: m_LocalPosition.x
@@ -116,11 +116,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5556937973482389357, guid: e6b0b9bcd780cc06f90474ea3e135539, type: 3}
       propertyPath: carSpeed
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5556937973482389357, guid: e6b0b9bcd780cc06f90474ea3e135539, type: 3}
       propertyPath: turnSpeed
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7652320039034088192, guid: e6b0b9bcd780cc06f90474ea3e135539, type: 3}
       propertyPath: m_Name

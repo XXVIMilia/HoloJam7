@@ -10,7 +10,6 @@ public class SmartStreet : MonoBehaviour
     void Start()
     {
         Waypoints = GetComponentsInChildren<Waypoint>();
-        print("Waypoints found in " + name + ": " +  Waypoints.Length);
     }
 
     public Waypoint GetWaypoint()

@@ -23,8 +23,12 @@ public class NPCSpawner : MonoBehaviour
             {
                 GameObject instance = Instantiate(asset);
                 instance.transform.position = waypointGameObject.transform.position;
-                instance.transform.rotation = waypointGameObject.transform.rotation;
-                instance.GetComponent<NPCBaseClass>().target = waypointGameObject;
+                instance.transform.rotation = waypointGameObject.transform.rotation * Quaternion.AngleAxis(180f,Vector3.up);
+                instance.GetComponent<NPCBaseClass>().target = waypointGameObject.NextWaypointA;
+                if(instance.GetComponent<NPCBaseClass>().target == null)
+                {
+                    Destroy(instance.gameObject);
+                }
                 instance.transform.SetParent(PoolOrigin);
             }
             
