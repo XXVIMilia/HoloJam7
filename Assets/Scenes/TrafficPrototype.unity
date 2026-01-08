@@ -3222,8 +3222,34 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  steeringCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSteeringAngle: 10
   CarDriveTrain: 1
   topSpeed: 30
+  accelForce: 5
   carSpeed: 0
   powerCurve:
     serializedVersion: 2
@@ -3276,39 +3302,26 @@ MonoBehaviour:
     m_PreInfinity: 0
     m_PostInfinity: 2
     m_RotationOrder: 4
-  steeringCurve:
+  brakeCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: -1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxSteeringAngle: 10
+  breakForce: 5
   ackermanConstant: 1.5
   tireMass: 0.67
+  driftTractionPercent: 0.5
+  currentTractionPercent: 1
+  driftSteer: 1
   FR_Tire: {fileID: 1269593819783280342}
   FL_Tire: {fileID: 3597628389200872345}
   BL_Tire: {fileID: 348847737424875710}
   BR_Tire: {fileID: 5538704339381848191}
   CarRB: {fileID: 1500861093851993514}
   CarCol: {fileID: 3861533586897096099}
+  BR_Trail: {fileID: 0}
+  BL_Trail: {fileID: 0}
   carAnimator: {fileID: 0}
   Velocity: {fileID: 1461721412811127989}
   Accel: {fileID: 8319795557061175783}
@@ -4202,7 +4215,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 215748258223517621, guid: 55081974fea45ca7a9a87ff9d8ae2704, type: 3}
+  - {fileID: 2100000, guid: c076135c59648ae4f94e21d41f311b99, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
