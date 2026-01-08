@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 55081974fea45ca7a9a87ff9d8ae2704
+guid: 70ddb8d22bb4cd941860db82510e543f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: IceCreamVan
-    second: {fileID: 2100000, guid: c076135c59648ae4f94e21d41f311b99, type: 2}
+      name: IceCreamWheel
+    second: {fileID: 2100000, guid: 5189118df9bad064490baa1927fce501, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
