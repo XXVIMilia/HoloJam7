@@ -13,7 +13,6 @@ public class CarAirborneState : CarDrivingState
     {
         base.EnterState();
         car.JumpForce = 0f;
-        Debug.Log("Entering Airborn State");
     }
 
     public override void FrameUpdate()

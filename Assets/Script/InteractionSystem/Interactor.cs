@@ -24,6 +24,10 @@ public class Interactor : MonoBehaviour{
 
     private void Awake(){
         inputActions = new InputSystem_Actions();
+
+        if (InteractorSource == null){
+            InteractorSource = this.transform;
+        }
     }
 
     private void OnEnable(){
@@ -43,6 +47,7 @@ public class Interactor : MonoBehaviour{
     private void Update(){
 
         if (InteractorSource == null || interactPromptUI == null){
+            Debug.LogWarning("InteractorSource or interactPromptUI is not assigned.");
             return;
         }
 
@@ -50,8 +55,9 @@ public class Interactor : MonoBehaviour{
         canInteract = currentInteractable != null;
 
         interactPromptUI.SetActive(canInteract);
-
+        
         if (canInteract && interactText != null){
+            Debug.Log("Updating interact text");
             interactText.text =
                 $"Press {GetInteractKey()} - {currentInteractable.GetInteractionMessage()}";
         }

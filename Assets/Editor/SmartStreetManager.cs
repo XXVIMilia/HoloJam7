@@ -111,7 +111,7 @@ public class SmartStreetManager : EditorWindow
     {
         SelectedSmartStreet.transform.position = SelectedSmartStreet.transform.position - (SelectedSmartStreet.GetComponent<StreetSnapper>().SnapPointSelf.transform.position - SelectedSmartStreet.GetComponent<StreetSnapper>().SnapPointTarget.transform.position);
         SelectedSmartStreet.GetComponent<StreetSnapper>().ConnectSnapPoints();
-    
+        EditorUtility.SetDirty(SelectedSmartStreet);
     }
 
     void RotateSmartStreet(float rotationVal)

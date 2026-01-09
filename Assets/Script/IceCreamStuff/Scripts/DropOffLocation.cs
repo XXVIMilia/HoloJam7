@@ -15,12 +15,15 @@ public class DropOffLocation : InteractableObject{
         playerIceCream.DeliverIceCream(this);
     }
     
-    private void OnEnable(){
-
+    private void Start(){
+        if (DropOffManager.instance == null){
+            Debug.LogWarning("DropOffManager not ready yet.");
+            return;
+        }
         DropOffManager.instance.Register(this);
     }
 
-    private void OnDisable(){
+    private void OnDestroy(){
         DropOffManager.instance.Unregister(this);
     }
 
