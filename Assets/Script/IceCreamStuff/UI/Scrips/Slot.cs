@@ -69,4 +69,9 @@ public class Slot : MonoBehaviour{
         IconImage.enabled = false;
     }
 
+    public float GetMeltPercentage(){
+        if (meltDuration <= 0f) return 1.0f;
+        return Mathf.Clamp01(currentMeltTime / meltDuration);
+    }
+
 }   

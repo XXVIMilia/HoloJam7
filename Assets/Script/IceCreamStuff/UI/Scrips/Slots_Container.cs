@@ -26,9 +26,11 @@ public class Slots_Container : MonoBehaviour
     // ---------------- UNITY ---------------- //
 
     private void Awake(){
+
         rectTransform = GetComponent<RectTransform>();
         layoutGroup = GetComponent<HorizontalLayoutGroup>();
-        layoutGroup.spacing = slotSpacing;
+        layoutGroup.spacing = slotSpacing + slotWidth;
+        Debug.Log("Spacing " + layoutGroup.spacing);
         CreateSlots();
         ResizeContainer();
       

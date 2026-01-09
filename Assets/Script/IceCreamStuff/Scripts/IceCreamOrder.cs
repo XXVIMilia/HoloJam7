@@ -6,10 +6,13 @@ public class IceCreamOrder {
 
     private readonly PlayerIceCream owner;
 
-    public IceCreamOrder(DropOffLocation target, Slot slot, PlayerIceCream owner){
+    private readonly Vector3 pickupPosition;
+
+    public IceCreamOrder(DropOffLocation target, Slot slot, PlayerIceCream owner, Vector3 pickupPosition){
         this.Target = target;
         this.Slot = slot;
         this.owner = owner;
+        this.pickupPosition = pickupPosition;
 
         Slot.OnMelted += OnMelted;
         Slot.StartMelting();
@@ -23,6 +26,12 @@ public class IceCreamOrder {
     }
 
     public void Complete(){
+        float meltPercent = Slot.GetMeltPercentage();
+        if(ScoreManager.Instance != null){
+            ScoreManager.Instance.addDeliveryScore(pickupPosition, Target.transform.position, meltPercent);
+        }
+
+
         CleanUp();
         Debug.Log("Ice cream order completed!");
     }
