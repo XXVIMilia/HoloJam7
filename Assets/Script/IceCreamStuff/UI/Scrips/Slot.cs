@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting;
 
 public class Slot : MonoBehaviour{
     
@@ -13,12 +14,13 @@ public class Slot : MonoBehaviour{
 
     private float currentMeltTime;
     private bool isMelting = false;
-
+   
     public event Action<Slot> OnMelted;
+
 
     private void OnEnable(){
         ResetSlot();
-}
+    }
 
     public void Update(){
         if (isMelting){
@@ -53,6 +55,12 @@ public class Slot : MonoBehaviour{
     }
 
     public void ResetSlot(){
+
+        if (IconImage == null){
+            Debug.LogError($"Slot {name} has no IconImage assigned");
+            return;
+        }
+
         currentMeltTime = 0f;
         MeltBar.fillAmount = 1f;
         isMelting = false;
