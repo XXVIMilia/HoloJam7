@@ -2690,14 +2690,6 @@ PrefabInstance:
       propertyPath: HorizontalAxis.Center
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1215116791673850532, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2368474910161723856, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2411944629007884467, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 62.9
@@ -2737,34 +2729,6 @@ PrefabInstance:
     - target: {fileID: 2411944629007884467, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3728735827825619371, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: steeringCurve.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3728735827825619371, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: steeringCurve.m_Curve.Array.data[0].value
-      value: 0.9000015
-      objectReference: {fileID: 0}
-    - target: {fileID: 3728735827825619371, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: steeringCurve.m_Curve.Array.data[0].inSlope
-      value: -1.4387119
-      objectReference: {fileID: 0}
-    - target: {fileID: 3728735827825619371, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: steeringCurve.m_Curve.Array.data[0].outSlope
-      value: -1.4387119
-      objectReference: {fileID: 0}
-    - target: {fileID: 3728735827825619371, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: steeringCurve.m_Curve.Array.data[0].outWeight
-      value: 0.057971016
-      objectReference: {fileID: 0}
-    - target: {fileID: 4099300743279015749, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5805530131527291740, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6880478207662274964, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
       propertyPath: m_Name
