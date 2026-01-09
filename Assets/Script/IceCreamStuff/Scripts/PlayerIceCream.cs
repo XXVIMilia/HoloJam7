@@ -46,6 +46,7 @@ public class PlayerIceCream : MonoBehaviour{
 
         IceCreamOrder newOrder = new IceCreamOrder(target, slot, this, transform.position);
         activeOrders.Add(newOrder);
+        target.waypoint.SetActive(true);
 
         Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
     }
@@ -61,6 +62,13 @@ public class PlayerIceCream : MonoBehaviour{
 
         order.Complete();
         activeOrders.Remove(order);
+
+        //Checks any more orders for this location
+        Debug.Log("hasDupe: "+ activeOrders.Exists(o => o.Target == location));
+        if (!activeOrders.Exists(o => o.Target == location))
+        {
+            location.waypoint.SetActive(false);
+        }
     }
 
     public void LoseIceCream(IceCreamOrder order){

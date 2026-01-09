@@ -6,7 +6,7 @@ public class DropOffManager : MonoBehaviour
    
    public static DropOffManager instance{ get; private set; }
 
-    private readonly List<DropOffLocation> activeLocations = new();
+    [SerializeField] private readonly List<DropOffLocation> activeLocations = new();
 
     private void Awake(){
         if (instance != null && instance != this){
