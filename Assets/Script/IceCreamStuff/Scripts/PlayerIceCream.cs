@@ -44,7 +44,7 @@ public class PlayerIceCream : MonoBehaviour{
             return;
         }
 
-        IceCreamOrder newOrder = new IceCreamOrder(target, slot, this);
+        IceCreamOrder newOrder = new IceCreamOrder(target, slot, this, transform.position);
         activeOrders.Add(newOrder);
 
         Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
