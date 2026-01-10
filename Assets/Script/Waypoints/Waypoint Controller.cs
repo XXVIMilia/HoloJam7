@@ -17,11 +17,10 @@ public class WaypointController : MonoBehaviour
         {
             if (item.transform.parent.GetComponent<DropOffLocation>() == null)
             {
-                Debug.Log("skiped");
                 continue;
             }
-            else {
-                Debug.Log("turning off");
+            else
+            {
                 DropOffLocation drop = item.transform.parent.GetComponent<DropOffLocation>();
                 drop.waypoint.SetActive(false);
             }
@@ -29,7 +28,7 @@ public class WaypointController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         CheckNearestWaypoint();
         Debug.DrawLine(transform.position, _nearestPoint.position, Color.white, 0.0f);
@@ -37,12 +36,22 @@ public class WaypointController : MonoBehaviour
 
     void CheckNearestWaypoint()
     {
-        int nearestIndex = 0;
-        float minPointDistance = Vector3.Distance(car.transform.position, _wayPointPosition[0].transform.position);
-
-        for (int i = 1; i < _wayPointPosition.Length; i++)
+        // Gets active waypoints
+        List<Transform> activePoints = new List<Transform>();
+        for (int i = 0; i < _wayPointPosition.Length; i++)
         {
-            float currentPointDistance = Vector3.Distance(car.transform.position, _wayPointPosition[i].transform.position);
+            if (_wayPointPosition[i].activeSelf)
+            {
+                activePoints.Add(_wayPointPosition[i].transform);
+            }
+        }
+        //Calculates closest waypoint
+        int nearestIndex = 0;
+        float minPointDistance = Vector3.Distance(car.transform.position, activePoints[0].transform.position);
+
+        for (int i = 1; i < activePoints.Count; i++)
+        {
+            float currentPointDistance = Vector3.Distance(car.transform.position, activePoints[i].transform.position);
             if (currentPointDistance <= minPointDistance)
             {
                 minPointDistance = currentPointDistance;
@@ -50,7 +59,7 @@ public class WaypointController : MonoBehaviour
             }
         }
 
-        _nearestPoint = _wayPointPosition[nearestIndex].transform;
+        _nearestPoint = activePoints[nearestIndex].transform;
     }
 
 }
