@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DropOffLocation : InteractableObject{
     public GameObject waypoint;
+    
     public override void Interact(){
         base.Interact();
 
