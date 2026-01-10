@@ -30,7 +30,7 @@ public class PlayerIceCream : MonoBehaviour
     {
         if (IsFull())
         {
-            Debug.Log("IceCream slots full!");
+            // Debug.Log("IceCream slots full!");
             return;
         }
 
@@ -39,7 +39,7 @@ public class PlayerIceCream : MonoBehaviour
 
         if (target == null)
         {
-            Debug.Log("No available drop-off locations.");
+            // Debug.Log("No available drop-off locations.");
             return;
         }
 
@@ -47,7 +47,7 @@ public class PlayerIceCream : MonoBehaviour
 
         if (slot == null)
         {
-            Debug.Log("No free slot available.");
+            // Debug.Log("No free slot available.");
             return;
         }
 
@@ -62,7 +62,7 @@ public class PlayerIceCream : MonoBehaviour
 
 
 
-        Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
+        // Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
     }
 
 
@@ -72,7 +72,7 @@ public class PlayerIceCream : MonoBehaviour
 
         if (order == null)
         {
-            Debug.Log("No ice cream order for this location.");
+            // Debug.Log("No ice cream order for this location.");
             return;
         }
 
