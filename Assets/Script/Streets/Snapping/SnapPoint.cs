@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 [ExecuteInEditMode()]
 public class SnapPoint : MonoBehaviour
 {
+#if UNITY_EDITOR
     public SphereCollider[] snapPoints; 
     public bool SnapTargetSet;
 
@@ -173,5 +174,5 @@ public class SnapPoint : MonoBehaviour
         
 
     }
-
+#endif
 }

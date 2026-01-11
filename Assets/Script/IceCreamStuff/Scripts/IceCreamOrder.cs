@@ -52,7 +52,7 @@ public class IceCreamOrder {
     public void OnMelted(Slot slot){
         Slot.OnMelted -= OnMelted;
         owner.LoseIceCream(this);
-        Debug.Log("Ice cream melted!");
+        // Debug.Log("Ice cream melted!");
     }
 
     public void Complete(){
@@ -64,12 +64,12 @@ public class IceCreamOrder {
 
 
         CleanUp();
-        Debug.Log("Ice cream order completed!");
+        // Debug.Log("Ice cream order completed!");
     }
 
     public void Fail(){
         CleanUp();
-        Debug.Log("Ice cream Melted and lost!");
+        // Debug.Log("Ice cream Melted and lost!");
     }
 
     public void CleanUp(){

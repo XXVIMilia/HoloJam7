@@ -194,9 +194,25 @@ public class Car : MonoBehaviour, ICarMoveable
         float steeringVel = Vector3.Dot(tireVel, steeringDir);
         float steeringRatio = Mathf.Clamp01(Vector3.Angle(tireVel, steeringDir) / 90f);
 
+        float driftGrip = 1f;
+        float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
+        if (carDrivingStateMachine.CurrentCarDrivingState == carDriftState)
+        {
+            normalizedSpeed /= 2f;
+            driftGrip = 2f;
+            if (Tire.name.StartsWith("B"))
+            {
+                float desiredAccel = driftSteer / Time.fixedDeltaTime;
+                // print(Tire.name + " Tire grip: " + desiredAccel);
+                CarRB.AddForceAtPosition(-steeringDir * steeringInput * desiredAccel, Tire.position);
+
+            }
+
+        }
+
         if (Tire.name.StartsWith("F"))
         {
-            float desireVelChange = -steeringVel * FrontTireGrip.Evaluate(steeringRatio) * currentTractionPercent;
+            float desireVelChange = -steeringVel * FrontTireGrip.Evaluate(steeringRatio) * currentTractionPercent * driftGrip;
             float desiredAccel = desireVelChange / Time.fixedDeltaTime;
             Debug.DrawRay(Tire.position, steeringDir * tireMass * desiredAccel, Color.red);
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
@@ -205,7 +221,7 @@ public class Car : MonoBehaviour, ICarMoveable
         }
         else if (Tire.name.StartsWith("B"))
         {
-            float desireVelChange = -steeringVel * BackTireGrip.Evaluate(steeringRatio) * currentTractionPercent;
+            float desireVelChange = -steeringVel * BackTireGrip.Evaluate(steeringRatio) * currentTractionPercent * driftGrip;
             float desiredAccel = desireVelChange / Time.fixedDeltaTime;
             // print(Tire.name + " Tire grip: " + desiredAccel);
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
@@ -220,21 +236,7 @@ public class Car : MonoBehaviour, ICarMoveable
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
         }
 
-        float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
-        if (carDrivingStateMachine.CurrentCarDrivingState == carDriftState)
-        {
-            normalizedSpeed = 0f;
-
-            if (Tire.name.StartsWith("B"))
-            {
-                float desiredAccel = driftSteer / Time.fixedDeltaTime;
-                // print(Tire.name + " Tire grip: " + desiredAccel);
-                CarRB.AddForceAtPosition(-steeringDir * steeringInput * desiredAccel, Tire.position);
-
-            }
-
-        }
-
+        
         if (CarDriveTrain == DriveTrainType.BACK)
         {
             if (Tire.name.StartsWith("FL"))

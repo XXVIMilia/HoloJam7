@@ -1,4 +1,3 @@
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -22,7 +21,7 @@ public class NPCSpawner : MonoBehaviour
             if(asset != null)
             {
                 GameObject instance = Instantiate(asset);
-                instance.transform.position = waypointGameObject.transform.position;
+                instance.transform.position = waypointGameObject.transform.position - new Vector3(0f,-0.5f,0f);
                 instance.transform.rotation = waypointGameObject.transform.rotation * Quaternion.AngleAxis(180f,Vector3.up);
                 instance.GetComponent<NPCBaseClass>().target = waypointGameObject.NextWaypointA;
                 if(instance.GetComponent<NPCBaseClass>().target == null)
