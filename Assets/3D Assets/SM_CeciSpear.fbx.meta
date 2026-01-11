@@ -3,7 +3,12 @@ guid: 2e58ee9a6644d0847b37cc28aed79fd6
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CCSpear
+    second: {fileID: 2100000, guid: d9baf17e470c7294c940cd2d492c97ff, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

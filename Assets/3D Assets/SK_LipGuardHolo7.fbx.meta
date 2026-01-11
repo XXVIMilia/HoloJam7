@@ -3,7 +3,12 @@ guid: 46b2d3aa0777b814c97d63cf197f9c95
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LipGuard
+    second: {fileID: 2100000, guid: ec571fe0a1d536c4d8e2171f3529ca66, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
