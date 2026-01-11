@@ -3,7 +3,12 @@ guid: c247603743d675941b9e69dfcd53e6ff
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sparks
+    second: {fileID: 2100000, guid: 9aa147c340742d94284c058240c7ebd1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
