@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class PlayerIceCream : MonoBehaviour{
 
     ///---------------Getters----------------///
     
-    public bool HasActiveOrders(){
+    public bool HasIceCream(){
          return activeOrders.Count > 0;
 
     }
@@ -27,6 +28,7 @@ public class PlayerIceCream : MonoBehaviour{
             Debug.Log("IceCream slots full!");
             return;
         }
+
 
         DropOffLocation target = DropOffManager.instance.GetRandomDropOffLocation();
 
@@ -67,7 +69,7 @@ public class PlayerIceCream : MonoBehaviour{
             return;
         }
 
-        order.Fail();
+        order.fail();
         activeOrders.Remove(order);
 
     }

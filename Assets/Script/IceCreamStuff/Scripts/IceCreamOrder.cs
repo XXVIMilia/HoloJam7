@@ -1,4 +1,3 @@
-using System.Globalization;
 using UnityEngine;
 
 public class IceCreamOrder {
@@ -6,18 +5,8 @@ public class IceCreamOrder {
     public Slot Slot {get ; private set;}
 
     private readonly PlayerIceCream owner;
+
     private readonly Vector3 pickupPosition;
-
-    
-     
-    public float MeltDuration { get; private set; }
-
-    //🔧(Balancing)
-    private const float secondsPerUnit = 0.6f;
-    private const float minMeltTime = 5f;
-    private const float maxMeltTime = 25f;
-
-
 
     public IceCreamOrder(DropOffLocation target, Slot slot, PlayerIceCream owner, Vector3 pickupPosition){
         this.Target = target;
@@ -25,29 +14,10 @@ public class IceCreamOrder {
         this.owner = owner;
         this.pickupPosition = pickupPosition;
 
-        CalculateMeltDuration();
-
         Slot.OnMelted += OnMelted;
-
-        Slot.StartMelting(MeltDuration);
+        Slot.StartMelting();
 
     }
-    // ---------------- CALCULATION ---------------- //
-
-    private void CalculateMeltDuration(){
-        if (Target == null){
-            MeltDuration = minMeltTime;
-            return;
-        }
-
-        float distance = Vector3.Distance(pickupPosition, Target.transform.position);
-        float calculatedTime = distance * secondsPerUnit;
-
-        MeltDuration = Mathf.Clamp(calculatedTime, minMeltTime, maxMeltTime);
-    }
-
-
-    // ----------------- EVENTS ------------------ //
 
     public void OnMelted(Slot slot){
         Slot.OnMelted -= OnMelted;
@@ -57,7 +27,6 @@ public class IceCreamOrder {
 
     public void Complete(){
         float meltPercent = Slot.GetMeltPercentage();
-
         if(ScoreManager.Instance != null){
             ScoreManager.Instance.addDeliveryScore(pickupPosition, Target.transform.position, meltPercent);
         }
@@ -67,7 +36,7 @@ public class IceCreamOrder {
         // Debug.Log("Ice cream order completed!");
     }
 
-    public void Fail(){
+    public void fail(){
         CleanUp();
         // Debug.Log("Ice cream Melted and lost!");
     }
