@@ -5,7 +5,7 @@ using System.Linq;
 [ExecuteInEditMode()]
 public class StreetSnapper : MonoBehaviour
 {
-    
+    #if UNITY_EDITOR
     
     // public StreetType myType;
     public SphereCollider SnapPointTarget;
@@ -186,4 +186,5 @@ if (setName)
         
 
     }
+    #endif
 }

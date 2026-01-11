@@ -1032,7 +1032,7 @@
                     "interactions": "",
                     "initialStateCheck": false
                 },
-                {   
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "d9d524a9-f559-4bd6-9c85-ace4151962ba",
