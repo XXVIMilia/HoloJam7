@@ -26,10 +26,10 @@ public class Slots_Container : MonoBehaviour
     // ---------------- UNITY ---------------- //
 
     private void Awake(){
-
         rectTransform = GetComponent<RectTransform>();
         layoutGroup = GetComponent<HorizontalLayoutGroup>();
         layoutGroup.spacing = slotSpacing + slotWidth;
+
         Debug.Log("Spacing " + layoutGroup.spacing);
         CreateSlots();
         ResizeContainer();
@@ -68,7 +68,7 @@ public class Slots_Container : MonoBehaviour
 
         Texture randomIcon = GetRandomIceCreamIcon();
         slot.SetIceCreamVisual(randomIcon);
-        slot.StartMelting();
+        
         return slot;
     }
     
@@ -76,7 +76,6 @@ public class Slots_Container : MonoBehaviour
         foreach (Slot slot in slots){
             if (!slot.gameObject.activeSelf){
                 slot.gameObject.SetActive(true);
-                slot.ResetSlot();
                 return slot;
             }
         }
