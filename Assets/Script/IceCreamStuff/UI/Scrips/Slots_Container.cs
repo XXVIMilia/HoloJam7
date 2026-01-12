@@ -15,7 +15,7 @@ public class Slots_Container : MonoBehaviour
     [SerializeField] private List<Texture> iceCreamIcons; 
 
     [Header("Layout Settings")]
-    public float slotSpacing = 100f;
+    public float slotSpacing = 100f; 
     public float slotWidth = 300f;
 
     private RectTransform rectTransform;
@@ -29,9 +29,8 @@ public class Slots_Container : MonoBehaviour
 
         rectTransform = GetComponent<RectTransform>();
         layoutGroup = GetComponent<HorizontalLayoutGroup>();
-    
-        layoutGroup.spacing = slotSpacing;
-
+        layoutGroup.spacing = slotSpacing + slotWidth;
+        Debug.Log("Spacing " + layoutGroup.spacing);
         CreateSlots();
         ResizeContainer();
       

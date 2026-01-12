@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 [ExecuteInEditMode()]
 public class SnapPoint : MonoBehaviour
 {
+#if UNITY_EDITOR
     public SphereCollider[] snapPoints; 
     public bool SnapTargetSet;
 
@@ -108,18 +109,20 @@ public class SnapPoint : MonoBehaviour
         
 
         if (selfCollider == null) return;
+        LayerMask layerToCheck = LayerMask.GetMask("EditorInterractions");
 
         Collider[] hitColliders = Physics.OverlapBox(
             selfCollider.transform.position, 
             selfCollider.bounds.extents, // Use the size of the existing collider
-            transform.rotation
+            transform.rotation,
+            layerToCheck
         );
 
 
         if(hitColliders.Length > 0)
         {
 
-            if(hitColliders.Length == 2)
+            if(hitColliders.Length == 1)
             {
                 if(selfCollider == GetComponent<StreetSnapper>().SnapPointSelf)
                 {
@@ -171,5 +174,5 @@ public class SnapPoint : MonoBehaviour
         
 
     }
-
+#endif
 }

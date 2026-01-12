@@ -14,7 +14,6 @@ public class CarGroundedState : CarDrivingState
     {
         base.EnterState();
         car.JumpForce = 2f;
-        Debug.Log("Entering Grounded State");
     }
 
     public override void ExitState()
