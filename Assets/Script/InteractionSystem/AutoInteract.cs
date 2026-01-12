@@ -13,8 +13,6 @@ public class AutoInteract : MonoBehaviour
     private float interactionTimer;
     private float cooldownTimer;
 
-    private bool isInside = false;
-
     private void Awake(){
         interactable = GetComponent<InteractableObject>();
         interactionTimer = interactionDelay;
@@ -60,7 +58,7 @@ public class AutoInteract : MonoBehaviour
             return;
 
         player = other.transform;
-        isInside = true;
+      
         interactionTimer = interactionDelay;
     }
 
@@ -69,7 +67,6 @@ public class AutoInteract : MonoBehaviour
             return;
 
         player = null;
-        isInside = false;
         ResetInteraction();
     }
     
