@@ -42,8 +42,14 @@ public class PlayerIceCream : MonoBehaviour{
             return;
         }
 
+        if (!HasActiveOrders())
+        {
+            DropOffManager.instance.ToggleShopWaypoint();
+        }
+
         IceCreamOrder newOrder = new IceCreamOrder(target, slot, this, transform.position);
         activeOrders.Add(newOrder);
+        target.waypoint.SetActive(true);
 
         Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
     }
@@ -59,6 +65,16 @@ public class PlayerIceCream : MonoBehaviour{
 
         order.Complete();
         activeOrders.Remove(order);
+
+        if (!activeOrders.Exists(o => o.Target == location))
+        {
+            location.waypoint.SetActive(false);
+        }
+
+        if (!HasActiveOrders())
+        {
+            DropOffManager.instance.ToggleShopWaypoint();
+        }
     }
 
     public void LoseIceCream(IceCreamOrder order){
@@ -69,6 +85,16 @@ public class PlayerIceCream : MonoBehaviour{
 
         order.Fail();
         activeOrders.Remove(order);
+
+        if (!activeOrders.Exists(o => o.Target == order.Target))
+        {
+            order.Target.waypoint.SetActive(false);
+        }
+
+        if (!HasActiveOrders())
+        {
+            DropOffManager.instance.ToggleShopWaypoint();
+        }
 
     }
     
