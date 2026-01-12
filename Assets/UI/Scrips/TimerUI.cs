@@ -59,16 +59,16 @@ public class TimerUI : MonoBehaviour
 
         if (timeRemaining <= 10f){
             timerText.color = warningColor;
-            Debug.Log("Color Cambiado: Vida naja");            
+            // Debug.Log("Color Cambiado: Vida naja");            
 
         }
         else if (timeRemaining <= halfTime){
             timerText.color = halfTimeColor;
-            Debug.Log("Color Cambiado: Media Vida");            
+            // Debug.Log("Color Cambiado: Media Vida");            
         }
         else{
             timerText.color = normalColor;
-            Debug.Log("Color Cambiado");            
+            // Debug.Log("Color Cambiado");            
         }
     }
 
