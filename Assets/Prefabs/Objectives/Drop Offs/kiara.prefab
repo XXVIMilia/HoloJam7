@@ -3005,6 +3005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: kiara
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
+      propertyPath: m_TagString
+      value: Wawa
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3595460727014065021, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
@@ -3030,6 +3034,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8958005961077727395}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8900777081758297044}
   m_SourcePrefab: {fileID: 100100000, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
 --- !u!1 &1682808916640438512 stripped
 GameObject:
@@ -3050,6 +3057,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DropOffLocation
   interactionRange: 7
   interactionMessage: Give Order
+  showInteractionMessage: 1
+  allowButtonInteraction: 1
   waypoint: {fileID: 8995270033320648215}
 --- !u!136 &8958005961077727395
 CapsuleCollider:
@@ -3074,6 +3083,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &8900777081758297044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682808916640438512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35306ab8c5ff384eb8bca01ed6f7203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoInteract
+  interactionDelay: 0.5
+  cooldownTime: 1
 --- !u!4 &2022496009527411274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}

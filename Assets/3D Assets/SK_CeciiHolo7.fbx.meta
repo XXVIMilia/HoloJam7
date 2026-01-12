@@ -3,7 +3,222 @@ guid: 78538acb66bedb647843656fb8f87efb
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u3050\u308B\u3050\u308B\u76EE"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u306A\u3054\u307F"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u306F\u3045"
+    second: {fileID: 2100000, guid: df207c0c91ca1254a9d7b77461c9d343, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u307E\u3064\u6BDB"
+    second: {fileID: 2100000, guid: 98494f9c2bf63354aa982eb10c7e0747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u307E\u3086\u6BDB"
+    second: {fileID: 2100000, guid: 98494f9c2bf63354aa982eb10c7e0747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u30B7\u30E7\u30FC\u30C8\u30D1\u30F3\u30C4"
+    second: {fileID: 2100000, guid: 27ec0a2511ca08c4a97cd5ac6e1697fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u30B9\u30AB\u30FC\u30C8\u91D1\u5C5E\u88CF\u6B6F\u8ECA"
+    second: {fileID: 2100000, guid: 98494f9c2bf63354aa982eb10c7e0747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u30B9\u30AB\u30FC\u30D5"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u30B9\u30AB\u30FC\u30D5\u7559\u3081"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u30BB\u30B7\u30EA\u30A2\u30A2\u30AF\u30BB"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u30CD\u30C3\u30AF\u30AB\u30D0\u30FC"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u30CF\u30FC\u30C8\u76EE"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u4E8C\u91CD"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u661F\u76EE"
+    second: {fileID: 2100000, guid: 27ec0a2511ca08c4a97cd5ac6e1697fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u670D\u767D"
+    second: {fileID: 2100000, guid: 27ec0a2511ca08c4a97cd5ac6e1697fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u670D\u767D\u524D\u7D10"
+    second: {fileID: 2100000, guid: 27ec0a2511ca08c4a97cd5ac6e1697fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u670D\u7DD1"
+    second: {fileID: 2100000, guid: bb6781a0c985e1b42805014bed5cd0e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u6B6F"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u6D99"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u7167\u308C"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u767D\u76EE"
+    second: {fileID: 2100000, guid: c225b17832eb1ba48ac27aeb331097f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u76EE"
+    second: {fileID: 2100000, guid: c225b17832eb1ba48ac27aeb331097f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u76EE\u30CF\u30A4\u30E9\u30A4\u30C8"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u7D76\u671B"
+    second: {fileID: 2100000, guid: 98494f9c2bf63354aa982eb10c7e0747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u808C"
+    second: {fileID: 2100000, guid: df207c0c91ca1254a9d7b77461c9d343, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u808C\u4F53"
+    second: {fileID: 2100000, guid: df207c0c91ca1254a9d7b77461c9d343, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u80F8\u30D9\u30EB\u30C8"
+    second: {fileID: 2100000, guid: bb6781a0c985e1b42805014bed5cd0e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u80F8\u30D9\u30EB\u30C8\u91D1\u5177"
+    second: {fileID: 2100000, guid: bb6781a0c985e1b42805014bed5cd0e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8155\u30EA\u30F3\u30B0"
+    second: {fileID: 2100000, guid: bb6781a0c985e1b42805014bed5cd0e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8170\u91D1\u5C5E\u3007"
+    second: {fileID: 2100000, guid: bb6781a0c985e1b42805014bed5cd0e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8170\u91D1\u5C5E\u30D9\u30FC\u30B9"
+    second: {fileID: 2100000, guid: bb6781a0c985e1b42805014bed5cd0e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8170\u91D1\u5C5E\u5B9D\u77F3"
+    second: {fileID: 2100000, guid: 27ec0a2511ca08c4a97cd5ac6e1697fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8170\u91D1\u5C5E\u6642\u8A08"
+    second: {fileID: 2100000, guid: 27ec0a2511ca08c4a97cd5ac6e1697fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u820C"
+    second: {fileID: 2100000, guid: 27ec0a2511ca08c4a97cd5ac6e1697fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8896"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8896\u80A9\u91D1\u5C5E"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8DB3\u30EA\u30F3\u30B0"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u8DB3\u6B6F\u8ECA"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u9752\u3056\u3081"
+    second: {fileID: 2100000, guid: 2e1764c3be55e1b46bd6f9ba4a78cd0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u9774"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u982D\u30CD\u30B8"
+    second: {fileID: 2100000, guid: 3a5b23778c8cd6d449b21e263de1d620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u9AEA"
+    second: {fileID: 2100000, guid: ba48ee64862cd2048b647d6a14c3adf0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u9AEA\u5F71"
+    second: {fileID: 2100000, guid: ba48ee64862cd2048b647d6a14c3adf0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -29,7 +244,210 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: TurnLeft
+      takeName: TurnLeft
+      internalID: 1628252986623654205
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TurnRight
+      takeName: TurnRight
+      internalID: -4049585584969071195
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TPose
+      takeName: TPose
+      internalID: -6519760567115542380
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ceci_arm|TPose
+      takeName: Ceci_arm|TPose
+      internalID: -6605945632354722371
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ceci_arm|TurnLeft
+      takeName: Ceci_arm|TurnLeft
+      internalID: -6322591881222843759
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ceci_arm|TurnRight
+      takeName: Ceci_arm|TurnRight
+      internalID: -266228270145706459
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ceci_arm|TurnTest
+      takeName: Ceci_arm|TurnTest
+      internalID: -7778600852874706449
+      firstFrame: 0
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

@@ -7,6 +7,7 @@ using DG.Tweening;
 using Unity.Mathematics;
 using TMPro;
 
+
 public class Car : MonoBehaviour, ICarMoveable
 {
     #region Declarations
@@ -50,6 +51,9 @@ public class Car : MonoBehaviour, ICarMoveable
     public float breakForce = 5;
     public float ackermanConstant;
     public float tireMass;
+    [SerializeField] public GameObject sparks;
+    [SerializeField] public AnimationCurve sparksCurve;
+
 
     [Header("Drifting")]
     [SerializeField] private float driftTractionPercent = 0.5f;
@@ -123,7 +127,6 @@ public class Car : MonoBehaviour, ICarMoveable
 
 
 
-
     }
 
     private void Update()
@@ -136,6 +139,18 @@ public class Car : MonoBehaviour, ICarMoveable
         else if (carDrivingStateMachine.CurrentCarDrivingState == carDriftState && currentTractionPercent > driftTractionPercent)
         {
             LerpTraction(driftTractionPercent);
+        }
+
+        if (accelInput > 0)
+        {
+            sparks.SetActive(true);
+            float normalizedSpeed = Mathf.Clamp01(Mathf.Abs(carSpeed) / topSpeed);
+            float sparkScale = sparksCurve.Evaluate(normalizedSpeed);
+            sparks.transform.localScale = new Vector3(sparks.transform.localScale.x, sparkScale, sparkScale);
+        }
+        else
+        {
+            sparks.SetActive(false);
         }
     }
 
@@ -236,7 +251,7 @@ public class Car : MonoBehaviour, ICarMoveable
             CarRB.AddForceAtPosition(steeringDir * tireMass * desiredAccel, Tire.position);
         }
 
-        
+
         if (CarDriveTrain == DriveTrainType.BACK)
         {
             if (Tire.name.StartsWith("FL"))
@@ -330,6 +345,7 @@ public class Car : MonoBehaviour, ICarMoveable
     {
         // print("Steering: " + steeringVal);
         steeringInput = steeringVal;
+        carAnimator.SetInteger("Steering", (int)steeringVal);
     }
 
     public void SetDrift(InputAction.CallbackContext context)

@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smolgura_seafoamboy_anims
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f46d1d4ed4bedc8f8a0ae8b3745c3284, type: 3}
+      propertyPath: m_TagString
+      value: Gura
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -136,6 +140,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f46d1d4ed4bedc8f8a0ae8b3745c3284, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6699515541861066523}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f46d1d4ed4bedc8f8a0ae8b3745c3284, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4929870608981271064}
   m_SourcePrefab: {fileID: 100100000, guid: f46d1d4ed4bedc8f8a0ae8b3745c3284, type: 3}
 --- !u!4 &8360310500909260532 stripped
 Transform:
@@ -161,6 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DropOffLocation
   interactionRange: 7
   interactionMessage: Give Order
+  showInteractionMessage: 1
+  allowButtonInteraction: 1
   waypoint: {fileID: 4668134542807991206}
 --- !u!136 &6699515541861066523
 CapsuleCollider:
@@ -185,3 +194,17 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4929870608981271064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9173298866565039182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35306ab8c5ff384eb8bca01ed6f7203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoInteract
+  interactionDelay: 0.5
+  cooldownTime: 1

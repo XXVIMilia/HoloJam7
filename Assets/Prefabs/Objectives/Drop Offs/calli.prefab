@@ -2885,6 +2885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: calli
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
+      propertyPath: m_TagString
+      value: Calli
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3595460727014065021, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
@@ -2907,6 +2911,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5622083608156763311}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -540324480018224553}
   m_SourcePrefab: {fileID: 100100000, guid: c2d8c1b5f98948db9b162298916f0c9c, type: 3}
 --- !u!4 &2623942364527015749 stripped
 Transform:
@@ -2932,6 +2939,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DropOffLocation
   interactionRange: 7
   interactionMessage: Give Order
+  showInteractionMessage: 1
+  allowButtonInteraction: 1
   waypoint: {fileID: 8464686033595516197}
 --- !u!136 &5622083608156763311
 CapsuleCollider:
@@ -2956,3 +2965,17 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &-540324480018224553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3396220999233662463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35306ab8c5ff384eb8bca01ed6f7203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoInteract
+  interactionDelay: 0.5
+  cooldownTime: 1

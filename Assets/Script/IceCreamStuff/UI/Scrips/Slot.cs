@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using Unity.VisualScripting;
 
 public class Slot : MonoBehaviour{
     
@@ -9,8 +8,8 @@ public class Slot : MonoBehaviour{
     public RawImage IconImage;
     public Image MeltBar;
 
-    [Header("Melt Settings")]
-    public float meltDuration = 10f;
+    
+    private float meltDuration;
 
     private float currentMeltTime;
     private bool isMelting = false;
@@ -23,16 +22,18 @@ public class Slot : MonoBehaviour{
     }
 
     public void Update(){
-        if (isMelting){
-            currentMeltTime += Time.deltaTime;
-            float fillAmount = Mathf.Clamp01(1 - (currentMeltTime / meltDuration));
-            MeltBar.fillAmount = fillAmount;
 
-            if (fillAmount <= 0){
-                isMelting = false;
-                OnMelted?.Invoke(this);
-            }
+        if (!isMelting || meltDuration <= 0f) return;
+
+        currentMeltTime += Time.deltaTime;
+        float fillAmount = Mathf.Clamp01(1 - (currentMeltTime / meltDuration));
+        MeltBar.fillAmount = fillAmount;
+
+        if (fillAmount <= 0){
+            isMelting = false;
+            OnMelted?.Invoke(this);
         }
+        
     }
 
     // -------- VISUAL -------- //
@@ -44,7 +45,8 @@ public class Slot : MonoBehaviour{
 
     // ---------------- CONTROL ---------------- //
 
-    public void StartMelting(){
+    public void StartMelting(float duration){
+        meltDuration = duration;
         currentMeltTime = 0f;
         MeltBar.fillAmount = 1f;
         isMelting = true;
@@ -62,6 +64,7 @@ public class Slot : MonoBehaviour{
         }
 
         currentMeltTime = 0f;
+        meltDuration = 0f;
         MeltBar.fillAmount = 1f;
         isMelting = false;
 
