@@ -15,23 +15,25 @@ public class GameOverManager : MonoBehaviour
     public TextMeshProUGUI finalScoreText;
     public UnityEngine.UI.Button retryButton;
 
-
     [Header("Win Condition")]
     public int scoreToWin = 1000;
 
     [Header("Text Pulse Animation")]
     public float pulseScale = 1.25f;
     public float pulseSpeed = 1.5f;
-
     
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip winClip;
     public AudioClip loseClip;
 
+    [Header("Score Count Animation")]
+    public float scoreCountDuration = 1.2f;
+
     private Vector3 originalScale;
     private bool gameEnded = false;
     private Coroutine pulseCoroutine;
+    private Coroutine scoreCountCoroutine;
 
     private void Awake(){
         if (Instance != null && Instance != this){
@@ -83,7 +85,10 @@ public class GameOverManager : MonoBehaviour
 
         pulseCoroutine = StartCoroutine(PulseText());
         if (finalScoreText != null){
-            finalScoreText.text = $"Final Score: {finalScore}";
+            if (scoreCountCoroutine != null){
+                StopCoroutine(scoreCountCoroutine);
+            }    
+            scoreCountCoroutine = StartCoroutine(CountFinalScore(finalScore));
         }
 
         audioSource.Play();
@@ -116,6 +121,22 @@ public class GameOverManager : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    private IEnumerator CountFinalScore(int targetScore){
+        float time = 0f;
+        int displayedScore = 0;
+
+        while (time < scoreCountDuration){
+            time += Time.unscaledDeltaTime;
+            float t = time / scoreCountDuration;
+
+            displayedScore = Mathf.RoundToInt(Mathf.Lerp(0, targetScore, t));
+            finalScoreText.text = $"Final Score: {displayedScore}";
+            yield return null;
+        }
+
+        finalScoreText.text = $"Final Score: {targetScore}";
     }
 
     // ---------------- BUTTONS ---------------- //
