@@ -60,10 +60,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Post_Lamp_A
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 096ccafa00731de42829b756b89215b6, type: 3}
-      propertyPath: m_TagString
-      value: LampPost
-      objectReference: {fileID: 0}
     - target: {fileID: 2248220163887469070, guid: 096ccafa00731de42829b756b89215b6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
