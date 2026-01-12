@@ -330,6 +330,7 @@ public class Car : MonoBehaviour, ICarMoveable
     {
         // print("Steering: " + steeringVal);
         steeringInput = steeringVal;
+        carAnimator.SetInteger("Steering", (int)steeringVal);
     }
 
     public void SetDrift(InputAction.CallbackContext context)
