@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 1619932811686468011}
   m_Layer: 0
   m_Name: NPC_LongCarBase
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,6 +195,8 @@ MonoBehaviour:
   _upwardsModifier: 3
   _forceMode: 0
   _baseSpeedPower: 0.7
+  _isKnocked: 0
+  _destroyTime: 10
   _rb: {fileID: 1619932811686468011}
   target: {fileID: 0}
   distToTarget: 0
