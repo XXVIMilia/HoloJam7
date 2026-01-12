@@ -26,18 +26,24 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void addDeliveryScore(Vector3 pickupPos, Vector3 dropoffPos, float meltPercent){
+        
         float distance = Vector3.Distance(pickupPos, dropoffPos);
         int baseScore = Mathf.RoundToInt(distance * pointPerDistance);
 
         float meltMultiplier = GetMeltMultiplier(meltPercent);
         int finalScore = Mathf.RoundToInt(baseScore * meltMultiplier);
 
+        int previousScore = totalscore;
+
         totalscore += finalScore;
         Debug.Log($"Delivery Score: {finalScore} (Base: {baseScore}, Melt Multiplier: {meltMultiplier}) | Total Score: {totalscore}");
 
         // Notify UI
         if(scoreUI != null){
-            scoreUI.UpdateScore(totalscore);
+            scoreUI.OnScoreAdded(finalScore, totalscore);
+        }
+        else{
+            Debug.LogWarning("ScoreUI not found!");
         }
     }
 

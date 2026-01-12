@@ -1,117 +1,101 @@
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIceCream : MonoBehaviour
-{
+public class PlayerIceCream : MonoBehaviour{
 
     [Header("UI References")]
     public Slots_Container slotsContainer;
-
-    private readonly List<IceCreamOrder> activeOrders = new();
+       
+    private readonly List<IceCreamOrder> activeOrders = new();        
 
     ///---------------Getters----------------///
-
-    public bool HasIceCream()
-    {
-        return activeOrders.Count > 0;
+    
+    public bool HasActiveOrders(){
+         return activeOrders.Count > 0;
 
     }
 
-    public bool IsFull()
-    {
+    public bool IsFull(){
         return activeOrders.Count >= slotsContainer.GetMaxSlots();
     }
 
     ///---------------Logic----------------///
+    
 
-
-    public void GiveIceCream()
-    {
-        if (IsFull())
-        {
-            // Debug.Log("IceCream slots full!");
+    public void GiveIceCream(){
+        if (IsFull()){
+            Debug.Log("IceCream slots full!");
             return;
         }
 
-
         DropOffLocation target = DropOffManager.instance.GetRandomDropOffLocation();
 
-        if (target == null)
-        {
-            // Debug.Log("No available drop-off locations.");
+        if (target == null){
+            Debug.Log("No available drop-off locations.");
             return;
         }
 
         Slot slot = slotsContainer.AddIceCream();
 
-        if (slot == null)
-        {
-            // Debug.Log("No free slot available.");
+        if (slot == null){      
+            Debug.Log("No free slot available.");
             return;
         }
 
-        if (!HasIceCream())
+        if (!HasActiveOrders())
         {
             DropOffManager.instance.ToggleShopWaypoint();
         }
-        
+
         IceCreamOrder newOrder = new IceCreamOrder(target, slot, this, transform.position);
         activeOrders.Add(newOrder);
         target.waypoint.SetActive(true);
 
-
-
-        // Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
+        Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
     }
 
 
-    public void DeliverIceCream(DropOffLocation location)
-    {
+    public void DeliverIceCream(DropOffLocation location){
         IceCreamOrder order = activeOrders.Find(o => o.Target == location);
 
-        if (order == null)
-        {
-            // Debug.Log("No ice cream order for this location.");
+        if (order == null){
+            Debug.Log("No ice cream order for this location.");
             return;
         }
 
         order.Complete();
         activeOrders.Remove(order);
 
-        //Checks any more orders for this location
         if (!activeOrders.Exists(o => o.Target == location))
         {
             location.waypoint.SetActive(false);
         }
 
-        if (!HasIceCream())
+        if (!HasActiveOrders())
         {
             DropOffManager.instance.ToggleShopWaypoint();
         }
     }
 
-    public void LoseIceCream(IceCreamOrder order)
-    {
-        if (!activeOrders.Contains(order))
-        {
+    public void LoseIceCream(IceCreamOrder order){
+        if (!activeOrders.Contains(order)){
             Debug.Log("Order not found among active orders.");
             return;
         }
 
-        order.fail();
+        order.Fail();
         activeOrders.Remove(order);
-
 
         if (!activeOrders.Exists(o => o.Target == order.Target))
         {
             order.Target.waypoint.SetActive(false);
         }
 
-        if (!HasIceCream())
+        if (!HasActiveOrders())
         {
             DropOffManager.instance.ToggleShopWaypoint();
         }
-    }
 
+    }
+    
 }

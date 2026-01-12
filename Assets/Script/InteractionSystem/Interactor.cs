@@ -47,20 +47,32 @@ public class Interactor : MonoBehaviour{
     private void Update(){
 
         if (InteractorSource == null || interactPromptUI == null){
-            // Debug.LogWarning("InteractorSource or interactPromptUI is not assigned.");
+            Debug.LogWarning("InteractorSource or interactPromptUI is not assigned.");
             return;
         }
 
         currentInteractable = GetNearbyInteractable();
         canInteract = currentInteractable != null;
 
-        interactPromptUI.SetActive(canInteract);
+        //interactPromptUI.SetActive(canInteract);
         
-        if (canInteract && interactText != null){
-            // Debug.Log("Updating interact text");
-            interactText.text =
-                $"Press {GetInteractKey()} - {currentInteractable.GetInteractionMessage()}";
+
+        if (!canInteract){
+            interactPromptUI.SetActive(false);
+            return;
         }
+
+        
+        if (currentInteractable.ShowInteractionMessage()){
+            interactPromptUI.SetActive(true);
+
+            if (interactText != null){
+                interactText.text = $"Press {GetInteractKey()} - {currentInteractable.GetInteractionMessage()}";
+            }
+        }else{
+            interactPromptUI.SetActive(false);
+        }
+            
     }
 
     private void OnInteract(InputAction.CallbackContext context){
@@ -69,6 +81,11 @@ public class Interactor : MonoBehaviour{
         if (!canInteract || currentInteractable == null){
             return;
         }
+
+        if (!currentInteractable.AllowButtonInteraction()){ 
+            return;
+        }
+
         if (currentInteractable.CanInteract(InteractorSource)){
             currentInteractable.Interact();
         }
