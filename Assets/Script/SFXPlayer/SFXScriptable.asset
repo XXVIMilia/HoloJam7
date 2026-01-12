@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec07010ab543a89f9b405d83c9f178f1, type: 3}
+  m_Name: SFXScriptable
+  m_EditorClassIdentifier: Assembly-CSharp::SFXScriptableScript
+  sfxDict:
+    m_keys:
+    - CrashingPipe
+    - Wall
+    - Fence
+    - Tree
+    - Bush
+    - Shop
+    - LampPost
+    - Hotdog
+    - Seasaw
+    - Car
+    - HeavyWall
+    - Ame
+    - Gura
+    - Calli
+    - Wawa
+    - Ina
+    - Bae
+    - Fauna
+    - Kronii
+    - Mumei
+    - Biboo
+    - Fuwamoco
+    - Rissa
+    - Shiori
+    - Liz
+    - Rys
+    - Gigi
+    - Bench
+    - Trash
+    m_values:
+    - {fileID: 8300000, guid: 623c1030695653111a63f99cf1bad89d, type: 3}
+    - {fileID: 8300000, guid: b983a82ad529f194688ec86b710554eb, type: 3}
+    - {fileID: 8300000, guid: 4693479b48fa77658934a14ec8094c7e, type: 3}
+    - {fileID: 8300000, guid: c166c4ff18683fe1ea91a65017171784, type: 3}
+    - {fileID: 8300000, guid: 4743f3a13a57144eba162d125ca3b0a5, type: 3}
+    - {fileID: 8300000, guid: 945267105d900116fa661b09cce50af4, type: 3}
+    - {fileID: 8300000, guid: 24dc7e7019002ee04bd0955a823de10d, type: 3}
+    - {fileID: 8300000, guid: 90a236ffee1b38415a431b22f008231e, type: 3}
+    - {fileID: 8300000, guid: 4b99aa9e89ae257fbab6d0a915c6cacb, type: 3}
+    - {fileID: 8300000, guid: 945267105d900116fa661b09cce50af4, type: 3}
+    - {fileID: 8300000, guid: 5e28194d871d4d655a1122309021b10c, type: 3}
+    - {fileID: 8300000, guid: bd37dc5dd73dd3379afe1ffd12d8c9ec, type: 3}
+    - {fileID: 8300000, guid: 3617faa4bf3a011e7854f14f464b22fa, type: 3}
+    - {fileID: 8300000, guid: c65d7ac6d93c9a6d485af7dd622ff970, type: 3}
+    - {fileID: 8300000, guid: fb7754762da66912789ff55f3e04b22c, type: 3}
+    - {fileID: 8300000, guid: cf7382f6e33d431779d5c7b80e746331, type: 3}
+    - {fileID: 8300000, guid: 3944e0329871392e194d78e61c82aa41, type: 3}
+    - {fileID: 8300000, guid: 14f26a1ee188b1bf9bc1fda300801b0f, type: 3}
+    - {fileID: 8300000, guid: 050145c3c49a4b6408af4e25af7ef285, type: 3}
+    - {fileID: 8300000, guid: 5ee07dc9c79756f70a54db7c09840a1e, type: 3}
+    - {fileID: 8300000, guid: d54b6879323487393baec6e1bef70a4d, type: 3}
+    - {fileID: 8300000, guid: c16180b9946e2f82bbdfba7262134222, type: 3}
+    - {fileID: 8300000, guid: b34d8dc60a1ba56e2a504d37be697910, type: 3}
+    - {fileID: 8300000, guid: f9c52ca787f5a76ee8d619ee67ebf84b, type: 3}
+    - {fileID: 8300000, guid: 4825f7e50606b01dab362068fd45798c, type: 3}
+    - {fileID: 8300000, guid: 0db6ba27646333b72b2b22762f8208c4, type: 3}
+    - {fileID: 8300000, guid: 88b7749f74a08364e93640e39b8caad3, type: 3}
+    - {fileID: 8300000, guid: 4693479b48fa77658934a14ec8094c7e, type: 3}
+    - {fileID: 8300000, guid: 90a236ffee1b38415a431b22f008231e, type: 3}
