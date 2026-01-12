@@ -123,7 +123,7 @@ MonoBehaviour:
   scoreToWin: 10000
   pulseScale: 1.25
   pulseSpeed: 1.5
-  audioSource: {fileID: 9043173542711191029}
+  gameOverSource: {fileID: 9043173542711191029}
   winClip: {fileID: 8300000, guid: 807816f1c8adb3345ab40e1e321dfd4b, type: 3}
   loseClip: {fileID: 8300000, guid: 3b844aa69885eef428a5fedc79bffc6b, type: 3}
   scoreCountDuration: 1.2

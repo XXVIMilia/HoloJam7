@@ -5,8 +5,15 @@ public class PlayerIceCream : MonoBehaviour{
 
     [Header("UI References")]
     public Slots_Container slotsContainer;
+
+    private DeliverSFX DeliverSFX;
        
-    private readonly List<IceCreamOrder> activeOrders = new();        
+    private readonly List<IceCreamOrder> activeOrders = new();      
+
+    
+    void Awake(){
+        DeliverSFX = FindAnyObjectByType<DeliverSFX>();
+    } 
 
     ///---------------Getters----------------///
     
@@ -65,6 +72,10 @@ public class PlayerIceCream : MonoBehaviour{
 
         order.Complete();
         activeOrders.Remove(order);
+        
+        if (DeliverSFX != null){
+            DeliverSFX.PlaySFXFromLookup(location.gameObject.tag);
+        }
 
         if (!activeOrders.Exists(o => o.Target == location))
         {
