@@ -7,7 +7,7 @@ public class DeliverSFX : MonoBehaviour
 
     public void PlaySFXFromLookup(string lookup)
     {
-        Debug.Log(sFXScriptableScript.name);
+        // Debug.Log(sFXScriptableScript.name);
 
         audioSource.PlayOneShot(sFXScriptableScript.GetClipFromTag(lookup));
     }

@@ -36,14 +36,14 @@ public class ScoreManager : MonoBehaviour
         int previousScore = totalscore;
 
         totalscore += finalScore;
-        Debug.Log($"Delivery Score: {finalScore} (Base: {baseScore}, Melt Multiplier: {meltMultiplier}) | Total Score: {totalscore}");
+        // Debug.Log($"Delivery Score: {finalScore} (Base: {baseScore}, Melt Multiplier: {meltMultiplier}) | Total Score: {totalscore}");
 
         // Notify UI
         if(scoreUI != null){
             scoreUI.OnScoreAdded(finalScore, totalscore);
         }
         else{
-            Debug.LogWarning("ScoreUI not found!");
+            // Debug.LogWarning("ScoreUI not found!");
         }
     }
 

@@ -47,7 +47,7 @@ public class Interactor : MonoBehaviour{
     private void Update(){
 
         if (InteractorSource == null || interactPromptUI == null){
-            Debug.LogWarning("InteractorSource or interactPromptUI is not assigned.");
+            // Debug.LogWarning("InteractorSource or interactPromptUI is not assigned.");
             return;
         }
 

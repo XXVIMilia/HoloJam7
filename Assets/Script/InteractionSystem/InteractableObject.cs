@@ -37,7 +37,7 @@ public class InteractableObject : MonoBehaviour, I_Interactable{
     }
 
     public virtual void Interact(){
-        Debug.Log($"{name} interacted");
+        // Debug.Log($"{name} interacted");
     }
 
    
