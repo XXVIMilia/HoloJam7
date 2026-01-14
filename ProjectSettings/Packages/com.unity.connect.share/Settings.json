@@ -4,7 +4,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/home/chesterjr14/UnityProjects/Builds/HoloJam7Bugfix3;/home/chesterjr14/UnityProjects/Builds/HoloJam7ProtoBuild2;/home/chesterjr14/UnityProjects/Builds/HoloJam7Submission1;;;;;;;\"}"
+                "value": "{\"m_Value\":\"D:/Created Games/Holo7v1.1.1;D:/Created Games/Holo7v1.1;/home/chesterjr14/UnityProjects/Builds/HoloJam7Bugfix3;/home/chesterjr14/UnityProjects/Builds/HoloJam7ProtoBuild2;/home/chesterjr14/UnityProjects/Builds/HoloJam7Submission1;;;;;\"}"
             }
         ]
     }
