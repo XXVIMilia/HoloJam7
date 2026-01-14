@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerEngine : MonoBehaviour
 {
@@ -11,11 +12,12 @@ public class PlayerEngine : MonoBehaviour
     public Rigidbody CarRB;
     public AudioClip A_Track_Normal;
     public AudioClip B_Track_Normal;
-    public AudioClip B_Track_Drift;
+    public AudioClip C_Track_Drift;
     // public AudioClip A_Track_Silly;
     // public AudioClip B_Track_Silly;
     public AudioSource A_Track;
     public AudioSource B_Track;
+    public AudioSource C_Track;
 
 
     //Interior Variables
@@ -26,7 +28,7 @@ public class PlayerEngine : MonoBehaviour
     private InputSystem_Actions controller;
     private float throttle;
     private bool drifting;
-    private bool driftActive;
+    private float brake;
 
 
 
@@ -48,13 +50,15 @@ public class PlayerEngine : MonoBehaviour
         controller.Car.Acceleration.canceled += _ => UpdateThrottle(0f);
         controller.Car.Drift.started += _ => UpdateDriftInput(true);
         controller.Car.Drift.canceled += _ => UpdateDriftInput(false);
+        controller.Car.Brake.performed += brakeCTX => UpdateBrakeInput(brakeCTX.ReadValue<float>());
+        controller.Car.Brake.canceled += _ => UpdateBrakeInput(0f);
 
     }
 
 
     public void UpdateThrottle(float inputThrottle)
     {
-        throttle = inputThrottle * 0.9f;
+        throttle = inputThrottle * 0.5f;
     }
 
     public void UpdateDriftInput(bool isDrifting)
@@ -62,19 +66,26 @@ public class PlayerEngine : MonoBehaviour
         drifting = isDrifting;
     }
 
+    public void UpdateBrakeInput(float brakeInput)
+    {
+        brake = brakeInput;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         A_Track.loop = false;
         B_Track.loop = true;
+        C_Track.loop = true;
         A_Track.volume = 1f;
         B_Track.volume = 0f;
+        C_Track.volume = 1f;
         A_Track.clip = A_Track_Normal;
         B_Track.clip = B_Track_Normal;
+        C_Track.clip = C_Track_Drift;
         CarRB = GetComponentInParent<Rigidbody>();
-        driftActive = false;
-        // swapLock = true;
     }
+
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -86,53 +97,55 @@ public class PlayerEngine : MonoBehaviour
             {
                 A_Track.Stop();
                 B_Track.Stop();
+                C_Track.Stop();
 
             }
 
-            A_Track.volume = 1f;
-            B_Track.volume = 0f;
-            // if (!swapLock)//Silly Code
+            // A_Track.volume = 1f;
+            // if(currentSpeedRatio < -0.1f && brake > 0.25f)
             // {
-            //     diceRoll = Random.Range(0f,1f);
-            //     if(diceRoll < 0.05)
+            //     if (!A_Track.isPlaying)
             //     {
-            //         print("Swapped to silly track");
-            //         // A_Track.clip = A_Track_Silly;
-            //         // B_Track.clip = B_Track_Silly;
+            //         A_Track.Play();
             //     }
-            //     else
-            //     {
-            //         print("Swapped to Normal track");
-            //         // A_Track.clip = A_Track_Normal;
-            //         // B_Track.clip = B_Track_Normal;
-            //     }
-            //     swapLock = true;
+            //     // B_Track.volume = engineShift.Evaluate(1 - Mathf.Abs(currentSpeedRatio)) *0.75f;
             // }
+            // else
+            // {
+            //     if (A_Track.isPlaying)
+            //     {
+            //         A_Track.Stop();
+            //     }
+            // }
+            
+
+            
+
         }
         else
         {
             if (_car.CheckAirborne())
             {
-                if (drifting)
+                if (!drifting)
                 {
-                    if (!driftActive)
-                    {
-                        B_Track.Stop();
-                        B_Track.clip = B_Track_Drift;
-                        B_Track.Play();
-                        driftActive = true;
-                    }
+                    if(C_Track.isPlaying)
+                        C_Track.DOFade(0f,0.25f).OnComplete(() => C_Track.Stop());
                 }
                 else
                 {
-                    if (driftActive)
+                    if (!C_Track.isPlaying)
                     {
-                        B_Track.Stop();
-                        B_Track.clip = B_Track_Normal;
-                        B_Track.Play();
-                        driftActive = false;
+                        C_Track.volume = 1f;
+                        C_Track.Play();
                     }
+                        
+                        
                 }
+            }
+            else
+            {
+                if(C_Track.isPlaying)
+                        C_Track.DOFade(0f,0.25f).OnComplete(() => C_Track.Stop());
             }
 
 
@@ -147,9 +160,17 @@ public class PlayerEngine : MonoBehaviour
             //     swapLock = false;
             // }
 
-            A_Track.volume = engineShift.Evaluate(currentSpeedRatio) * (throttle + 0.1f);
-            B_Track.volume = engineShift.Evaluate(1 - currentSpeedRatio) * (throttle + 0.1f);
+            if(currentSpeedRatio < -0.1f && brake > 0.25f)
+            {
+                A_Track.volume = 0.75f;
+            }
+            else
+            {
+                A_Track.volume = engineShift.Evaluate(currentSpeedRatio) * (throttle + 0.5f);
+            }
+            B_Track.volume = engineShift.Evaluate(1 - currentSpeedRatio) * (throttle + 0.5f);
             B_Track.pitch = 1f + currentSpeedRatio / 5f;
+            C_Track.pitch = 1f + currentSpeedRatio / 8f;
 
         }
     }
