@@ -72,10 +72,6 @@ public class PlayerIceCream : MonoBehaviour{
 
         order.Complete();
         activeOrders.Remove(order);
-        
-        if (DeliverSFX != null){
-            DeliverSFX.PlaySFXFromLookup(location.gameObject.tag);
-        }
 
         if (!activeOrders.Exists(o => o.Target == location))
         {
@@ -85,6 +81,10 @@ public class PlayerIceCream : MonoBehaviour{
         if (!HasActiveOrders())
         {
             DropOffManager.instance.ToggleShopWaypoint();
+        }
+        
+        if (DeliverSFX != null){
+            DeliverSFX.PlaySFXFromLookup(location.gameObject.tag);
         }
     }
 

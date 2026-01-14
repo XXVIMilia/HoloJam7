@@ -7,6 +7,7 @@ public class PlayerEngine : MonoBehaviour
     public float maxPlayerSpeed;
 
     [Header("References")]
+    public Car _car;
     public Rigidbody CarRB;
     public AudioClip A_Track_Normal;
     public AudioClip B_Track_Normal;
@@ -15,7 +16,7 @@ public class PlayerEngine : MonoBehaviour
     // public AudioClip B_Track_Silly;
     public AudioSource A_Track;
     public AudioSource B_Track;
-    
+
 
     //Interior Variables
     [SerializeField]
@@ -50,7 +51,7 @@ public class PlayerEngine : MonoBehaviour
 
     }
 
-    
+
     public void UpdateThrottle(float inputThrottle)
     {
         throttle = inputThrottle * 0.9f;
@@ -79,15 +80,15 @@ public class PlayerEngine : MonoBehaviour
     private void FixedUpdate()
     {
         currentSpeedRatio = Vector3.Dot(transform.right, CarRB.linearVelocity) / maxPlayerSpeed;
-        if( Mathf.Abs(currentSpeedRatio) < 0.1f)
+        if (Mathf.Abs(currentSpeedRatio) < 0.1f)
         {
             if (B_Track.isPlaying)
             {
                 A_Track.Stop();
                 B_Track.Stop();
-                
+
             }
-            
+
             A_Track.volume = 1f;
             B_Track.volume = 0f;
             // if (!swapLock)//Silly Code
@@ -110,26 +111,30 @@ public class PlayerEngine : MonoBehaviour
         }
         else
         {
-            if (drifting)
+            if (_car.CheckAirborne())
             {
-                if (!driftActive)
+                if (drifting)
                 {
-                    B_Track.Stop();
-                    B_Track.clip = B_Track_Drift;
-                    B_Track.Play();
-                    driftActive = true;
+                    if (!driftActive)
+                    {
+                        B_Track.Stop();
+                        B_Track.clip = B_Track_Drift;
+                        B_Track.Play();
+                        driftActive = true;
+                    }
+                }
+                else
+                {
+                    if (driftActive)
+                    {
+                        B_Track.Stop();
+                        B_Track.clip = B_Track_Normal;
+                        B_Track.Play();
+                        driftActive = false;
+                    }
                 }
             }
-            else
-            {
-                if (driftActive)
-                {
-                    B_Track.Stop();
-                    B_Track.clip = B_Track_Normal;
-                    B_Track.Play();
-                    driftActive = false;
-                }
-            }
+
 
             if (!B_Track.isPlaying)
             {
@@ -143,8 +148,8 @@ public class PlayerEngine : MonoBehaviour
             // }
 
             A_Track.volume = engineShift.Evaluate(currentSpeedRatio) * (throttle + 0.1f);
-            B_Track.volume = engineShift.Evaluate(1-currentSpeedRatio) * (throttle + 0.1f);
-            B_Track.pitch = 1f + currentSpeedRatio/5f;
+            B_Track.volume = engineShift.Evaluate(1 - currentSpeedRatio) * (throttle + 0.1f);
+            B_Track.pitch = 1f + currentSpeedRatio / 5f;
 
         }
     }
