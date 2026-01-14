@@ -6,6 +6,7 @@ using UnityEngine;
 public class NPCBaseClass : Knockable
 {
 
+    [SerializeField]
     private GameObject _player;
 
     
@@ -164,13 +165,13 @@ public class NPCBaseClass : Knockable
 
 
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == _player)
-        {
-            Destroy(gameObject);
-        }
-    }
+    // void OnTriggerExit(Collider other)
+    // {
+    //     if (other.gameObject == _player)
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     private void Start()
     {
