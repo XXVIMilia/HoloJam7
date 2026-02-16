@@ -5,8 +5,15 @@ public class PlayerIceCream : MonoBehaviour{
 
     [Header("UI References")]
     public Slots_Container slotsContainer;
+
+    private DeliverSFX DeliverSFX;
        
-    private readonly List<IceCreamOrder> activeOrders = new();        
+    private readonly List<IceCreamOrder> activeOrders = new();      
+
+    
+    void Awake(){
+        DeliverSFX = FindAnyObjectByType<DeliverSFX>();
+    } 
 
     ///---------------Getters----------------///
     
@@ -24,21 +31,21 @@ public class PlayerIceCream : MonoBehaviour{
 
     public void GiveIceCream(){
         if (IsFull()){
-            Debug.Log("IceCream slots full!");
+            // Debug.Log("IceCream slots full!");
             return;
         }
 
         DropOffLocation target = DropOffManager.instance.GetRandomDropOffLocation();
 
         if (target == null){
-            Debug.Log("No available drop-off locations.");
+            // Debug.Log("No available drop-off locations.");
             return;
         }
 
         Slot slot = slotsContainer.AddIceCream();
 
         if (slot == null){      
-            Debug.Log("No free slot available.");
+            // Debug.Log("No free slot available.");
             return;
         }
 
@@ -51,7 +58,7 @@ public class PlayerIceCream : MonoBehaviour{
         activeOrders.Add(newOrder);
         target.waypoint.SetActive(true);
 
-        Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
+        // Debug.Log("IceCream received!. Current IceCreams: " + activeOrders.Count);
     }
 
 
@@ -59,7 +66,7 @@ public class PlayerIceCream : MonoBehaviour{
         IceCreamOrder order = activeOrders.Find(o => o.Target == location);
 
         if (order == null){
-            Debug.Log("No ice cream order for this location.");
+            // Debug.Log("No ice cream order for this location.");
             return;
         }
 
@@ -75,11 +82,15 @@ public class PlayerIceCream : MonoBehaviour{
         {
             DropOffManager.instance.ToggleShopWaypoint();
         }
+        
+        if (DeliverSFX != null){
+            DeliverSFX.PlaySFXFromLookup(location.gameObject.tag);
+        }
     }
 
     public void LoseIceCream(IceCreamOrder order){
         if (!activeOrders.Contains(order)){
-            Debug.Log("Order not found among active orders.");
+            // Debug.Log("Order not found among active orders.");
             return;
         }
 

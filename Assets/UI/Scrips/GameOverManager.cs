@@ -23,7 +23,7 @@ public class GameOverManager : MonoBehaviour
     public float pulseSpeed = 1.5f;
     
     [Header("Audio")]
-    public AudioSource audioSource;
+    public AudioSource gameOverSource;
     public AudioClip winClip;
     public AudioClip loseClip;
 
@@ -53,6 +53,10 @@ public class GameOverManager : MonoBehaviour
 
         if (retryButton != null)
             retryButton.onClick.AddListener(Retry);
+
+        gameOverSource.ignoreListenerPause = true;
+
+
     }
 
     public void TriggerGameOver(){
@@ -63,6 +67,8 @@ public class GameOverManager : MonoBehaviour
 
         //Freeze game
         Time.timeScale = 0f;
+
+        AudioListener.pause = true;
 
         // Show GameOver UI
         if (gameOverPanel != null){
@@ -91,20 +97,20 @@ public class GameOverManager : MonoBehaviour
             scoreCountCoroutine = StartCoroutine(CountFinalScore(finalScore));
         }
 
-        audioSource.Play();
+        gameOverSource.Play();
     }
 
     // ---------------- RESULTS ---------------- //
     public void WinnerFunction(){
         resultText.text = "YOU WIN";
         resultText.color = Color.green;
-        audioSource.clip = winClip;
+        gameOverSource.clip = winClip;
     }
 
     public void LooserFunction(){
         resultText.text = "Game Over";
         resultText.color = Color.red;
-        audioSource.clip = loseClip;
+        gameOverSource.clip = loseClip;
         
     }
 
@@ -142,6 +148,7 @@ public class GameOverManager : MonoBehaviour
     // ---------------- BUTTONS ---------------- //
 
     private void Retry(){
+        AudioListener.pause = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

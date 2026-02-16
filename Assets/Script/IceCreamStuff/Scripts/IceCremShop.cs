@@ -17,7 +17,7 @@ public class IceCreamShop : InteractableObject{
 
     private void Start(){
         if (DropOffManager.instance == null){
-            Debug.LogWarning("DropOffManager not ready yet.");
+            // Debug.LogWarning("DropOffManager not ready yet.");
             return;
         }
         DropOffManager.instance.ShopRegister(this);

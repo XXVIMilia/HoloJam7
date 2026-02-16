@@ -1126,6 +1126,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Unstuck"",
+                    ""type"": ""Button"",
+                    ""id"": ""67daa395-cc3c-4ac8-87d5-d16feb4bf27f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1260,6 +1269,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13b22f6d-0c1b-49f3-a613-29c6c85ef74e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Unstuck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a373ae2-461a-431f-8846-a5da8f4e4e73"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Unstuck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1357,6 +1388,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Car_Brake = m_Car.FindAction("Brake", throwIfNotFound: true);
         m_Car_Drift = m_Car.FindAction("Drift", throwIfNotFound: true);
         m_Car_Interact = m_Car.FindAction("Interact", throwIfNotFound: true);
+        m_Car_Unstuck = m_Car.FindAction("Unstuck", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1823,6 +1855,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Car_Brake;
     private readonly InputAction m_Car_Drift;
     private readonly InputAction m_Car_Interact;
+    private readonly InputAction m_Car_Unstuck;
     /// <summary>
     /// Provides access to input actions defined in input action map "Car".
     /// </summary>
@@ -1854,6 +1887,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Car/Interact".
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Car_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Car/Unstuck".
+        /// </summary>
+        public InputAction @Unstuck => m_Wrapper.m_Car_Unstuck;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1895,6 +1932,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Unstuck.started += instance.OnUnstuck;
+            @Unstuck.performed += instance.OnUnstuck;
+            @Unstuck.canceled += instance.OnUnstuck;
         }
 
         /// <summary>
@@ -1921,6 +1961,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Unstuck.started -= instance.OnUnstuck;
+            @Unstuck.performed -= instance.OnUnstuck;
+            @Unstuck.canceled -= instance.OnUnstuck;
         }
 
         /// <summary>
@@ -2210,5 +2253,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Unstuck" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUnstuck(InputAction.CallbackContext context);
     }
 }

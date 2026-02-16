@@ -3,38 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags:
-  - Floor
-  - Snap
-  - Street
-  - Waypoint
-  - Car
-  - Wall
-  - Shop
-  - Tree
-  - Seasaw
-  - LampPost
-  - Hotdog
-  - Fence
-  - Bush
-  - Ame
-  - Bae
-  - Biboo
-  - Calli
-  - Liz
-  - Fauna
-  - Gigi
-  - Gura
-  - Ina
-  - Rys
-  - Wawa
-  - Kronii
-  - Mumei
-  - Rissa
-  - Shiori
-  - Fuwamoco
-  - Trash
-  - Bench
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -42,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - EditorInterractions
+  - 
   - 
   - 
   - 
@@ -74,10 +43,3 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
-  - Light Layer 1
-  - Light Layer 2
-  - Light Layer 3
-  - Light Layer 4
-  - Light Layer 5
-  - Light Layer 6
-  - Light Layer 7

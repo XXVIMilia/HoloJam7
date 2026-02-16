@@ -74,7 +74,7 @@ public class DropOffManager : MonoBehaviour
     {
         if (shopLocations.Count == 0)
         {
-            Debug.LogWarning("No active drop-off locations available.");
+            // Debug.LogWarning("No active drop-off locations available.");
             return;
         }
 
@@ -83,13 +83,13 @@ public class DropOffManager : MonoBehaviour
             if (showWaypoint)
             {
                 shopLocations[i].waypoint.SetActive(false);
-                Debug.Log("turning waypoint off");
+                // Debug.Log("turning waypoint off");
                 continue;
             }
             else if (!showWaypoint)
             {
                 shopLocations[i].waypoint.SetActive(true);
-                Debug.Log("turning waypoint on");
+                // Debug.Log("turning waypoint on");
                 continue;
             }
         }

@@ -30,7 +30,7 @@ public class Slots_Container : MonoBehaviour
         layoutGroup = GetComponent<HorizontalLayoutGroup>();
         layoutGroup.spacing = slotSpacing + slotWidth;
 
-        Debug.Log("Spacing " + layoutGroup.spacing);
+        // Debug.Log("Spacing " + layoutGroup.spacing);
         CreateSlots();
         ResizeContainer();
       
