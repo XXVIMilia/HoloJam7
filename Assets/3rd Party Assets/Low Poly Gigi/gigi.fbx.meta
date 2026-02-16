@@ -3,7 +3,17 @@ guid: c2d8c1b5f98948db9b162298916f0c9c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gigi_mat
+    second: {fileID: 2100000, guid: 7888669cc7325524089601eab3edbe49, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gigiglove
+    second: {fileID: 2100000, guid: 034d98b39bdec224ea3d9aa18e511a32, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
