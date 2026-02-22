@@ -11,7 +11,6 @@ public class GameTimer : MonoBehaviour
 
     public static GameTimer Instance { get; private set; }
 
-
     private void Awake(){
         if (Instance != null){
             Destroy(gameObject);
@@ -48,6 +47,21 @@ public class GameTimer : MonoBehaviour
     public bool IsMatchEnded(){
         return gameEnded;
     }
+
+    // Adds seconds to the remaining match time. Ignored if the match already ended.
+    public void AddTime(float seconds)
+    {
+        if (gameEnded)
+            return;
+
+        // Only allow positive additions
+        if (seconds <= 0f)
+            return;
+
+        timeRemaining += seconds;
+    }
+    
+
 
 }
 

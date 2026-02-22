@@ -15,7 +15,7 @@ MonoBehaviour:
   sfxDict:
     m_keys:
     - Gura
-    - ame
+    - Ame
     - Wawa
     - Calli
     - Ina
@@ -23,14 +23,14 @@ MonoBehaviour:
     - Mumei
     - Fauna
     - Shiori
-    - biboo
+    - Biboo
     - Rissa
     - Fuwamoco
     - Liz
     - Gigi
     - Rys
     - Sana
-    - bea
+    - Bae
     m_values:
     - {fileID: 8300000, guid: a8ce73e9ccb8c5afdbad164f101da5e4, type: 3}
     - {fileID: 8300000, guid: 28c61707acffa4deda9c69dbb7ea9479, type: 3}

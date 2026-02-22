@@ -5,6 +5,9 @@ public class PlayerIceCream : MonoBehaviour{
 
     [Header("UI References")]
     public Slots_Container slotsContainer;
+    
+    [Header("Gameplay")]
+    public float extraTimeOnDelivery = 10f;
 
     private DeliverSFX DeliverSFX;
        
@@ -72,6 +75,16 @@ public class PlayerIceCream : MonoBehaviour{
 
         order.Complete();
         activeOrders.Remove(order);
+
+        // Add 10 seconds to the match timer for a successful delivery
+        if (GameTimer.Instance != null)
+        {
+            GameTimer.Instance.AddTime(extraTimeOnDelivery);
+            if (TimerUI.Instance != null)
+            {
+                TimerUI.Instance.SpawnTimePopup(extraTimeOnDelivery);
+            }
+        }
 
         if (!activeOrders.Exists(o => o.Target == location))
         {

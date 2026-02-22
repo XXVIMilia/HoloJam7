@@ -9,13 +9,12 @@ public class SFXScriptableScript : ScriptableObject
 
     public AudioClip GetClipFromTag(String tag)
     {
-        if (sfxDict.ContainsKey(tag))
+        if (sfxDict != null && sfxDict.TryGetValue(tag, out var clip))
         {
-            return sfxDict[tag];
+            return clip;
         }
-        else
-        {
-            return sfxDict["CrashingPipe"];
-        }
+
+        Debug.LogWarning($"SFXDictionary: no clip found for tag '{tag}'.");
+        return null;
     }
 }

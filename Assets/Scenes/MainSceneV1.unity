@@ -1745,6 +1745,10 @@ PrefabInstance:
       propertyPath: interactionRange
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8043278059155837276, guid: 3a04b9752893bc9438cf89b99782ba4f, type: 3}
+      propertyPath: interactionMessage
+      value: Ice Cream :D
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7528,6 +7532,10 @@ PrefabInstance:
     - target: {fileID: 915604731172883166, guid: 6267e436d5668b946b9f8041ab7f9d8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321884654631495513, guid: 6267e436d5668b946b9f8041ab7f9d8f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13603,6 +13611,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 281226042}
     m_Modifications:
+    - target: {fileID: 4263509265304268793, guid: c30c409e80ba28f478a0889fa6487962, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7106663793197454835, guid: c30c409e80ba28f478a0889fa6487962, type: 3}
       propertyPath: m_LocalPosition.x
       value: -41.6
@@ -16789,6 +16801,10 @@ PrefabInstance:
       propertyPath: HorizontalAxis.Center
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2223404196569637083, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
+      propertyPath: maxIceCreams
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2326213050561312024, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
       propertyPath: bonkSFX
       value: 
@@ -16904,6 +16920,10 @@ PrefabInstance:
     - target: {fileID: 6880478207662274964, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
       propertyPath: m_Name
       value: CC_TruckV1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780413605920005548, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
+      propertyPath: extraTimeOnDelivery
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7796960484874567199, guid: e6495a5afa8bed9cbbb6be08e31d34d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21239,6 +21259,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6703324350113720517, guid: 6e49be5e8ce9bce4793882a83247aaa8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.332
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703324350113720517, guid: 6e49be5e8ce9bce4793882a83247aaa8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8360310500909260532, guid: 6e49be5e8ce9bce4793882a83247aaa8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -72.86346
@@ -24360,6 +24388,10 @@ PrefabInstance:
     - target: {fileID: 8043278059155837276, guid: 3a04b9752893bc9438cf89b99782ba4f, type: 3}
       propertyPath: interactionRange
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043278059155837276, guid: 3a04b9752893bc9438cf89b99782ba4f, type: 3}
+      propertyPath: interactionMessage
+      value: Ice Cream :P
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28731,6 +28763,10 @@ PrefabInstance:
       propertyPath: interactionRange
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8043278059155837276, guid: 3a04b9752893bc9438cf89b99782ba4f, type: 3}
+      propertyPath: interactionMessage
+      value: Ice Cream >:c
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30868,7 +30904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471553525192050363, guid: 0093d704d207cfb41ad154b61239706c, type: 3}
       propertyPath: matchDuration
-      value: 180
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 5475570895677711812, guid: 0093d704d207cfb41ad154b61239706c, type: 3}
       propertyPath: m_Enabled

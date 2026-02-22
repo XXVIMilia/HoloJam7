@@ -3,8 +3,9 @@ using TMPro;
 using System.Collections;
 using System.Reflection.Emit;
 
-public class TimerUI : MonoBehaviour
-{
+public class TimerUI : MonoBehaviour{
+    public static TimerUI Instance { get; private set; }
+
     [Header("UI Reference")]
     public TextMeshProUGUI timerText;
 
@@ -22,6 +23,13 @@ public class TimerUI : MonoBehaviour
     private Coroutine pulseCoroutine;
 
     private void Awake(){
+        // enforce singleton
+        if (Instance != null && Instance != this){
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         if (timerText == null)
         {
             Debug.LogError("TimerUI: timerText not assigned!");
@@ -52,6 +60,21 @@ public class TimerUI : MonoBehaviour
         HandleLastSecondsPulse(seconds, time);
     }
 
+    #region PopupSupport
+
+    [Header("Popup Settings")]
+    public RectTransform popupSpawnPoint;
+    public TimePopup popupPrefab;
+
+    public void SpawnTimePopup(float secondsAdded)
+    {
+        if (popupPrefab == null || popupSpawnPoint == null) return;
+        TimePopup popup = Instantiate(popupPrefab, popupSpawnPoint);
+        popup.Play(secondsAdded);
+    }
+
+    #endregion
+
     // ---------------- COLOR LOGIC ---------------- //
 
     private void UpdateColor(float timeRemaining){
@@ -59,7 +82,7 @@ public class TimerUI : MonoBehaviour
 
         if (timeRemaining <= 10f){
             timerText.color = warningColor;
-            // Debug.Log("Color Cambiado: Vida naja");            
+
 
         }
         else if (timeRemaining <= halfTime){

@@ -2,15 +2,17 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class ScorePopup : MonoBehaviour
+public class TimePopup : MonoBehaviour
 {
     public TextMeshProUGUI text;
 
     [Header("Animation")]
     public float lifetime = 0.6f;
     public float floatDistance = 40f;
-    public float popScale = 1.3f;
-    public float popDuration = 0.1f;
+
+    // pop parameters no longer used; kept for compatibility if needed
+    //public float popScale = 1.3f;
+    //public float popDuration = 0.1f;
 
     private Vector3 startPos;
     private Vector3 originalScale;
@@ -20,22 +22,21 @@ public class ScorePopup : MonoBehaviour
         originalScale = transform.localScale;        
     }
 
-    public void Play(int amount){
-        text.text = $"+{amount}";   
+    public void Play(float seconds){
+        // make sure the popup is visible only when we start animating
+        gameObject.SetActive(true);
+        text.text = $"+{seconds:0.#}s";
         StartCoroutine(Animate());  
     }
 
     private IEnumerator Animate(){
-
-        // POP IN
-        transform.localScale = originalScale * popScale;
-        yield return new WaitForSeconds(popDuration);
+        // ensure starting scale and alpha
         transform.localScale = originalScale;
-
+        text.alpha = 1f;
 
         float time = 0f;
 
-        // FLOAT + FADE
+        // SLIDE UP + FADE OUT over lifetime
         while (time < lifetime){
             time += Time.deltaTime;
             float t = time / lifetime;
@@ -48,16 +49,4 @@ public class ScorePopup : MonoBehaviour
 
         Destroy(gameObject);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
