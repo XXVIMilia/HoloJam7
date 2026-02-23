@@ -152,6 +152,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4840505890170705698}
     m_Modifications:
+    - target: {fileID: 2012094056117364623, guid: d30cd024bdc17a54c84294acdb9a1ebe, type: 3}
+      propertyPath: lifetime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012094056117364623, guid: d30cd024bdc17a54c84294acdb9a1ebe, type: 3}
+      propertyPath: popScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012094056117364623, guid: d30cd024bdc17a54c84294acdb9a1ebe, type: 3}
+      propertyPath: popDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012094056117364623, guid: d30cd024bdc17a54c84294acdb9a1ebe, type: 3}
+      propertyPath: floatDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4283496069763338340, guid: d30cd024bdc17a54c84294acdb9a1ebe, type: 3}
       propertyPath: m_Name
       value: TimerText
