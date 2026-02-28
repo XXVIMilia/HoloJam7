@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c2d8c1b5f98948db9b162298916f0c9c
+guid: 680dcbe369c90ba4081e56c91e407fdd
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: gigi_mat
-    second: {fileID: 2100000, guid: 7888669cc7325524089601eab3edbe49, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gigiglove
-    second: {fileID: 2100000, guid: 034d98b39bdec224ea3d9aa18e511a32, type: 2}
+      name: MaterialCity
+    second: {fileID: 2100000, guid: f46d302b2da20944eb02e92be67b5d92, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
